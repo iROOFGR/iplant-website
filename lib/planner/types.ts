@@ -6,10 +6,17 @@
  * into another product without change.
  */
 
-export type EnvironmentId = "indoor" | "retail" | "rooftop";
-export type SystemId = "hug" | "rooftop";
+export type EnvironmentId = "indoor" | "retail" | "rooftop" | "greenhouse";
+export type SystemId = "hug" | "rooftop" | "greenhouse";
 export type CropId = "lettuce" | "basil" | "mint";
-export type SettingId = "restaurant" | "hotel" | "office" | "school" | "home" | "retail";
+export type SettingId =
+  | "restaurant"
+  | "hotel"
+  | "office"
+  | "school"
+  | "home"
+  | "retail"
+  | "farm";
 
 /** A low/high band. Every biological output is a range, never a point value. */
 export interface Range {
@@ -51,6 +58,8 @@ export interface FitResult {
   /** Growing trays (HUG) or beds (rooftop) across the planned units. */
   trays: number;
   traysPerUnit: number;
+  /** Growing surface of one tray / bed / gutter, in m². */
+  elementAreaM2: number;
   /** True when the area is too small for even one unit. */
   belowMinimum: boolean;
 }
@@ -108,5 +117,40 @@ export interface PlanResult {
   };
   water: WaterResult;
   energy: EnergyResult;
+  assumptions: Assumption[];
+}
+
+/* ────────────────────────────── Grower mode ───────────────────────────── */
+
+/** What a grower already has in place. Each step adds to the one before it. */
+export type ControlLevel = "none" | "controlled" | "lit";
+
+export interface UpliftInput {
+  /** Growing area under glass, m². */
+  areaM2: number;
+  crop: CropId;
+  /** What they run today. */
+  current: ControlLevel;
+}
+
+export interface UpliftStage {
+  level: ControlLevel;
+  /** Productive months per year at this level. */
+  productiveMonths: number;
+  cyclesPerYear: number;
+  kgPerYear: Range;
+  /** Added electricity for supplemental lighting, kWh/yr. Zero below "lit". */
+  lightingKwhPerYear: number;
+}
+
+export interface UpliftResult {
+  input: UpliftInput;
+  /** Where they are now. */
+  current: UpliftStage;
+  /** Every stage, so the gap between them is visible rather than asserted. */
+  stages: UpliftStage[];
+  /** Growing elements the area supports. */
+  elements: number;
+  plants: number;
   assumptions: Assumption[];
 }

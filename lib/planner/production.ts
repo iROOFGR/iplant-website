@@ -16,8 +16,25 @@
  * support.
  */
 
-import { getCrop } from "./data";
+import { getCrop, growdata } from "./data";
 import type { CropId, CropYield, Range } from "./types";
+
+/**
+ * `plants_per_tray` is authored against the HUG tray, so plant density is
+ * derived from it and then applied to whatever growing surface the chosen
+ * system actually has. That is what lets a 2.4 m² gutter and a 0.77 m² tray
+ * share one crop library instead of needing per-system plant counts.
+ */
+const REFERENCE_AREA_M2 = growdata.meta.density_reference.reference_area_m2;
+
+export function plantsPerM2(crop: CropId): number {
+  return getCrop(crop).plants_per_tray / REFERENCE_AREA_M2;
+}
+
+/** Plants on one growing element of the given surface area. */
+export function plantsOnElement(crop: CropId, elementAreaM2: number): number {
+  return Math.round(plantsPerM2(crop) * elementAreaM2);
+}
 
 const DAYS_PER_YEAR = 365;
 const MONTHS_PER_YEAR = 12;
@@ -38,9 +55,13 @@ export function allocateTrays(totalTrays: number, cropCount: number): number[] {
   });
 }
 
-export function computeYield(crop: CropId, traysAllocated: number): CropYield {
+export function computeYield(
+  crop: CropId,
+  traysAllocated: number,
+  elementAreaM2: number = REFERENCE_AREA_M2,
+): CropYield {
   const c = getCrop(crop);
-  const plants = traysAllocated * c.plants_per_tray;
+  const plants = traysAllocated * plantsOnElement(crop, elementAreaM2);
   const cyclesPerYear = DAYS_PER_YEAR / c.cycle_days;
 
   const kgPerCycle: Range = {

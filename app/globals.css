@@ -360,3 +360,25 @@ html[lang="ar"] header a,
 html[lang="ar"] header button {
   line-height: 1.55;
 }
+
+/* ---------------------------------------------------------------------------
+   Planner schematic motion. Two effects only — nutrient flow along a dashed
+   path, and a slow pulse on lights and controller LEDs. Both are decorative
+   and are dropped entirely under prefers-reduced-motion by the rule above.
+--------------------------------------------------------------------------- */
+
+@keyframes planner-flow {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+@keyframes planner-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}

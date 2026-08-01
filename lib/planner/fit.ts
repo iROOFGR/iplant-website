@@ -6,9 +6,11 @@
  * So capacity is reported as a ceiling, and the planned figure defaults to
  * the typical deployment for the setting until the visitor says otherwise.
  *
- * The geometry itself is honest: a unit claims its own footprint plus a share
- * of the access clearance it needs to be worked on. Units pushed against each
- * other cannot be harvested from.
+ * Three geometries are supported:
+ *   HUG        — a cabinet with a footprint, worked from one face
+ *   rooftop    — beds laid out with a path between them
+ *   greenhouse — gutter runs on a fixed pitch, no per-unit clearance because
+ *                the pitch already contains the walkway
  */
 
 import { getEnvironment, getSetting, getSystem, systemForEnvironment } from "./data";
@@ -35,14 +37,20 @@ export function computeFit(
   const usableFraction = env.usable_area_fraction.value;
   const usableAreaM2 = areaM2 * usableFraction;
 
-  // HUG is a cabinet with a footprint; the rooftop system is laid out in beds.
-  const footprint =
-    "footprint_m" in system
-      ? system.footprint_m.w * system.footprint_m.d
-      : system.bed_m.l * system.bed_m.w;
-  const width = "footprint_m" in system ? system.footprint_m.w : system.bed_m.l;
+  let areaPerUnitM2: number;
+  if ("gutter_m" in system) {
+    // A gutter run claims its length × the row pitch. The pitch already
+    // includes the walkway, so no separate clearance is added.
+    areaPerUnitM2 = system.gutter_m.l * system.gutter_pitch_m;
+  } else {
+    const footprint =
+      "footprint_m" in system
+        ? system.footprint_m.w * system.footprint_m.d
+        : system.bed_m.l * system.bed_m.w;
+    const width = "footprint_m" in system ? system.footprint_m.w : system.bed_m.l;
+    areaPerUnitM2 = footprint + width * system.access_clearance_m * CLEARANCE_SHARE;
+  }
 
-  const areaPerUnitM2 = footprint + width * system.access_clearance_m * CLEARANCE_SHARE;
   const maxUnits = Math.max(Math.floor(usableAreaM2 / areaPerUnitM2), 0);
 
   // Plan for what was asked, what is typical, or what fits — whichever is
@@ -65,6 +73,8 @@ export function computeFit(
     typicalUnits,
     trays: units * traysPerUnit,
     traysPerUnit,
+    /** Growing surface of one tray / bed / gutter, used to derive plant counts. */
+    elementAreaM2: system.growing_area_m2_per_element,
     belowMinimum: maxUnits < 1,
   };
 }

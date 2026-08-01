@@ -6,9 +6,11 @@ import type { Locale } from "@/config/site";
 import type { Content } from "@/lib/content";
 import {
   MAX_AREA_M2,
+  computeUplift,
   cropsForEnvironment,
   environmentsForSetting,
   plan as computePlan,
+  type ControlLevel,
   type CropId,
   type EnvironmentId,
   type PlanResult,
@@ -17,7 +19,11 @@ import {
 } from "@/lib/planner";
 import { SystemDiagram } from "./SystemDiagram";
 
-const SETTINGS: SettingId[] = ["restaurant", "hotel", "office", "school", "home", "retail"];
+const SETTINGS: SettingId[] = ["restaurant", "hotel", "office", "school", "home", "retail", "farm"];
+const LEVELS: ControlLevel[] = ["none", "controlled", "lit"];
+const CROP_OPTIONS: CropId[] = ["lettuce", "basil", "mint"];
+type Mode = "newBuild" | "upgrade";
+const MODES: Mode[] = ["newBuild", "upgrade"];
 
 /** Numbers stay in Western digits in both locales — the Levant commercial norm. */
 const fmt = (n: number) => n.toLocaleString("en-US");
@@ -37,6 +43,18 @@ export function GrowPlanner({ locale, content }: { locale: Locale; content: Cont
   /** Null means "follow the typical deployment"; a number is an explicit choice. */
   const [units, setUnits] = useState<number | null>(null);
   const [showAssumptions, setShowAssumptions] = useState(false);
+
+  // Grower mode is a different question for a different audience: not "what
+  // could I grow?" but "what would this change about what I already grow?"
+  const [mode, setMode] = useState<Mode>("newBuild");
+  const [ghArea, setGhArea] = useState(500);
+  const [ghCrop, setGhCrop] = useState<CropId>("lettuce");
+  const [ghCurrent, setGhCurrent] = useState<ControlLevel>("none");
+
+  const uplift = useMemo(
+    () => computeUplift({ areaM2: ghArea, crop: ghCrop, current: ghCurrent }),
+    [ghArea, ghCrop, ghCurrent],
+  );
 
   // Changing the setting can invalidate the environment, and changing the
   // environment can invalidate a crop. Resolve both before planning rather
@@ -84,6 +102,15 @@ export function GrowPlanner({ locale, content }: { locale: Locale; content: Cont
     return `/${locale}/contact?${params.toString()}`;
   }, [areaM2, env, fit, effectiveCrops, totals, t, locale]);
 
+  const upliftEnquiryHref = useMemo(() => {
+    const summary = [
+      `${ghArea} m\u00b2 ${t.environments.greenhouse}`,
+      t.crops[ghCrop],
+      t.uplift.levels[ghCurrent],
+    ].join(" \u00b7 ");
+    return `/${locale}/contact?${new URLSearchParams({ type: "project", plan: summary }).toString()}`;
+  }, [ghArea, ghCrop, ghCurrent, t, locale]);
+
   function toggleCrop(id: CropId) {
     setCrops((prev) =>
       prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id],
@@ -98,9 +125,170 @@ export function GrowPlanner({ locale, content }: { locale: Locale; content: Cont
     setUnits(null);
   }
 
+  if (mode === "upgrade") {
+    return (
+      <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-20">
+        <ModeSwitch mode={mode} setMode={setMode} t={t} />
+        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-16">
+          <form className="space-y-9" onSubmit={(e) => e.preventDefault()}>
+            <fieldset>
+              <legend className="eyebrow text-forest">{t.uplift.areaLabel}</legend>
+              <div className="mt-3 flex items-center gap-3">
+                <input
+                  type="number"
+                  min={50}
+                  max={20000}
+                  value={ghArea}
+                  onChange={(e) => setGhArea(Math.max(50, Number(e.target.value) || 50))}
+                  dir="ltr"
+                  aria-label={t.uplift.areaLabel}
+                  className="w-36 rounded-sm border border-line bg-white px-4 py-3 text-ink outline-none focus:border-forest"
+                />
+                <span className="text-ink/60">{t.labels.areaUnit}</span>
+              </div>
+              <input
+                type="range"
+                min={100}
+                max={5000}
+                step={50}
+                value={Math.min(ghArea, 5000)}
+                onChange={(e) => setGhArea(Number(e.target.value))}
+                aria-label={t.uplift.areaLabel}
+                className="mt-4 w-full accent-forest"
+              />
+            </fieldset>
+
+            <fieldset>
+              <legend className="eyebrow text-forest">{t.uplift.cropLabel}</legend>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {CROP_OPTIONS.map((c) => (
+                  <Chip key={c} active={ghCrop === c} onClick={() => setGhCrop(c)} label={t.crops[c]} />
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend className="eyebrow text-forest">{t.uplift.currentLabel}</legend>
+              <div className="mt-3 space-y-2">
+                {LEVELS.map((l) => (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setGhCurrent(l)}
+                    aria-pressed={ghCurrent === l}
+                    className={`block w-full rounded-sm border p-4 text-start transition-colors ${
+                      ghCurrent === l ? "border-forest bg-forest/8" : "border-line hover:border-forest/50"
+                    }`}
+                  >
+                    <span className="block font-medium">{t.uplift.levels[l]}</span>
+                    <span className="mt-1 block text-sm text-ink/60">{t.uplift.levelHints[l]}</span>
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+          </form>
+
+          <div className="rounded-sm bg-white p-7 md:p-9">
+            <div className="flex flex-wrap items-start justify-between gap-6">
+              <div>
+                <p className="eyebrow text-ink/50">{t.uplift.eyebrow}</p>
+                <p className="h2 mt-1.5">{t.uplift.headline}</p>
+                <p className="measure mt-3 text-ink/70">{t.uplift.intro}</p>
+              </div>
+              <div className="text-forest">
+                <SystemDiagram system="greenhouse" label={t.environments.greenhouse} />
+              </div>
+            </div>
+
+            <ul className="mt-8 space-y-3 border-t border-line pt-7">
+              {uplift.stages.map((st) => {
+                const isCurrent = st.level === uplift.current.level;
+                const gainLow = st.kgPerYear.low - uplift.current.kgPerYear.low;
+                const pct =
+                  uplift.current.kgPerYear.low > 0
+                    ? Math.round((gainLow / uplift.current.kgPerYear.low) * 100)
+                    : 0;
+                return (
+                  <li
+                    key={st.level}
+                    className={`rounded-sm border p-5 ${
+                      isCurrent ? "border-line bg-paper/60" : "border-forest/30"
+                    }`}
+                  >
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <span className="font-medium">{t.uplift.levels[st.level]}</span>
+                      <span className="text-sm text-ink/60">
+                        <bdi>{st.productiveMonths}</bdi> / <bdi>12</bdi> {t.uplift.monthsLabel}
+                      </span>
+                    </div>
+                    <p className="h3 mt-2 text-forest">
+                      <bdi>{fmtRange(st.kgPerYear)}</bdi>{" "}
+                      <span className="text-base font-normal text-ink/60">kg/yr</span>
+                    </p>
+                    <p className="mt-1 text-sm text-ink/60">
+                      {isCurrent ? (
+                        t.uplift.noGain
+                      ) : (
+                        <span className="text-forest">
+                          {t.uplift.gainLabel}: <bdi>+{pct}%</bdi>
+                        </span>
+                      )}
+                      {st.lightingKwhPerYear > 0 ? (
+                        <>
+                          {" \u00b7 "}
+                          {t.uplift.lightingCostLabel}: <bdi>{fmt(st.lightingKwhPerYear)}</bdi> kWh/yr
+                        </>
+                      ) : null}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="mt-7 border-t border-line pt-6">
+              <button
+                type="button"
+                onClick={() => setShowAssumptions((v) => !v)}
+                aria-expanded={showAssumptions}
+                className="eyebrow text-forest underline-offset-4 hover:underline"
+              >
+                {showAssumptions ? t.assumptions.toggleHide : t.assumptions.toggle}
+              </button>
+              {showAssumptions ? (
+                <ul className="mt-4 space-y-2 text-sm text-ink/65">
+                  {uplift.assumptions.map((a) => (
+                    <li key={a.id}>
+                      <bdi>{a.id}</bdi>
+                      {a.value ? (
+                        <>
+                          {" \u2014 "}
+                          <bdi>{a.value}</bdi>
+                        </>
+                      ) : null}{" "}
+                      <span className="opacity-60">[{a.status}]</span>
+                    </li>
+                  ))}
+                  <li>{t.assumptions.yields}</li>
+                </ul>
+              ) : null}
+            </div>
+
+            <div className="mt-8 border-t border-line pt-7">
+              <Link href={upliftEnquiryHref} className="btn bg-forest text-paper">
+                {t.cta.label}
+              </Link>
+              <p className="mt-3 text-sm text-ink/55">{t.cta.note}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-20">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-16">
+      <ModeSwitch mode={mode} setMode={setMode} t={t} />
+      <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-16">
         {/* ─────────────────────────── Inputs ─────────────────────────── */}
         <form className="space-y-9" onSubmit={(e) => e.preventDefault()}>
           {/* Space */}
@@ -351,6 +539,40 @@ export function GrowPlanner({ locale, content }: { locale: Locale; content: Cont
             </div>
           )}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function ModeSwitch({
+  mode,
+  setMode,
+  t,
+}: {
+  mode: Mode;
+  setMode: (m: Mode) => void;
+  t: Content["planner"];
+}) {
+  return (
+    <div>
+      <p className="eyebrow text-ink/50">{t.modes.title}</p>
+      <div className="mt-3 grid gap-3 sm:max-w-2xl sm:grid-cols-2">
+        {MODES.map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => setMode(m)}
+            aria-pressed={mode === m}
+            className={`rounded-sm border p-4 text-start transition-colors ${
+              mode === m ? "border-forest bg-forest/8" : "border-line hover:border-forest/50"
+            }`}
+          >
+            <span className="block font-medium">{t.modes[m]}</span>
+            <span className="mt-1 block text-sm text-ink/60">
+              {m === "newBuild" ? t.modes.newBuildHint : t.modes.upgradeHint}
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );

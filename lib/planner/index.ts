@@ -14,6 +14,7 @@ import { computeEnergy, computeWater } from "./resources";
 import type { Assumption, CropId, PlanInput, PlanResult } from "./types";
 
 export * from "./types";
+export { computeUplift } from "./uplift";
 export {
   CROPS,
   cropsForEnvironment,
@@ -34,15 +35,15 @@ export function plan(input: PlanInput): PlanResult {
 
   const crops = input.crops.length ? input.crops : (["lettuce"] as CropId[]);
   const allocation = allocateTrays(fit.trays, crops.length);
-  const yields = crops.map((crop, i) => computeYield(crop, allocation[i] ?? 0));
+  const yields = crops.map((crop, i) => computeYield(crop, allocation[i] ?? 0, fit.elementAreaM2));
 
   const totals = {
     kgPerMonth: sumRanges(yields.map((y) => y.kgPerMonth)),
     kgPerYear: sumRanges(yields.map((y) => y.kgPerYear)),
   };
 
-  const water = computeWater(yields);
-  const energy = computeEnergy(yields, fit.system);
+  const water = computeWater(yields, fit.elementAreaM2);
+  const energy = computeEnergy(yields, fit.system, fit.elementAreaM2);
 
   return {
     input: { ...input, areaM2, units: fit.units },

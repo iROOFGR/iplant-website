@@ -5,7 +5,11 @@
     "status": "DEFAULTS_PENDING_FIELD_VALIDATION",
     "note": "Single source of truth for the Fit My Space planner. The site reads this at runtime — updating a figure here needs no code change. Every agronomic number is an editable default drawn from published hydroponic practice, NOT yet validated against iPlant field data. Replace values as validation completes.",
     "disclaimer_en": "A simplified model with default coefficients, for planning rather than prediction. Figures update as iPlant field validation completes.",
-    "disclaimer_ar": "نموذج مبسّط بمعاملات افتراضية، للتخطيط لا للتنبؤ. تُحدَّث الأرقام مع اكتمال التحقق الميداني لدى آي بلانت."
+    "disclaimer_ar": "نموذج مبسّط بمعاملات افتراضية، للتخطيط لا للتنبؤ. تُحدَّث الأرقام مع اكتمال التحقق الميداني لدى آي بلانت.",
+    "density_reference": {
+      "note": "crops[].plants_per_tray is authored against the HUG tray. Plant density per m² is derived from it, then applied to each system's growing area — so a gutter or a bed gets the right count without re-authoring every crop per system.",
+      "reference_area_m2": 0.77
+    }
   },
   "systems": {
     "hug": {
@@ -34,7 +38,8 @@
         "retail"
       ],
       "lighting": "led_controlled",
-      "faas_available": true
+      "faas_available": true,
+      "growing_area_m2_per_element": 0.77
     },
     "rooftop": {
       "id": "rooftop",
@@ -52,7 +57,28 @@
         "rooftop"
       ],
       "lighting": "daylight",
-      "faas_available": false
+      "faas_available": false,
+      "growing_area_m2_per_element": 2.0
+    },
+    "greenhouse": {
+      "id": "greenhouse",
+      "name_en": "Hydroponic greenhouse",
+      "name_ar": "بيت محمي مائي",
+      "method": "nft_gutter",
+      "dimensions_status": "INDICATIVE_PENDING_AS_BUILT",
+      "gutter_m": {
+        "l": 12.0,
+        "w": 0.2
+      },
+      "gutter_pitch_m": 0.3,
+      "access_clearance_m": 0.0,
+      "environments": [
+        "greenhouse"
+      ],
+      "lighting": "daylight_plus_supplemental",
+      "faas_available": false,
+      "growing_area_m2_per_element": 2.4,
+      "gutter_pitch_note": "Row pitch for leafy crops and herbs in NFT. Fruiting crops need roughly 0.8 m; add a per-crop pitch when the library grows beyond leafy."
     }
   },
   "environments": {
@@ -81,6 +107,15 @@
         "value": 0.55,
         "status": "ASSUMPTION",
         "note": "Excludes parapet setbacks, plant rooms, water tanks, access routes and shaded strips. A structural survey always governs the real figure."
+      }
+    },
+    "greenhouse": {
+      "id": "greenhouse",
+      "system": "greenhouse",
+      "usable_area_fraction": {
+        "value": 0.8,
+        "status": "ASSUMPTION",
+        "note": "Growing area after paths, headers, service bay and the perimeter strip along the walls."
       }
     }
   },
@@ -158,6 +193,18 @@
         "status": "ASSUMPTION",
         "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
       }
+    },
+    {
+      "id": "farm",
+      "environments": [
+        "greenhouse",
+        "rooftop"
+      ],
+      "typical_units": {
+        "value": 12,
+        "status": "ASSUMPTION",
+        "note": "Gutter runs in a typical starting bay. The visitor can change it."
+      }
     }
   ],
   "tariffs": {
@@ -224,7 +271,8 @@
       "environments": [
         "indoor",
         "retail",
-        "rooftop"
+        "rooftop",
+        "greenhouse"
       ]
     },
     {
@@ -266,7 +314,8 @@
       "environments": [
         "indoor",
         "retail",
-        "rooftop"
+        "rooftop",
+        "greenhouse"
       ]
     },
     {
@@ -308,8 +357,46 @@
       "environments": [
         "indoor",
         "retail",
-        "rooftop"
+        "rooftop",
+        "greenhouse"
       ]
     }
-  ]
+  ],
+  "uplift": {
+    "baseline_productive_months": {
+      "value": 7,
+      "status": "ASSUMPTION",
+      "note": "Months per year an unheated, uncontrolled greenhouse in the Jordan highlands is productive. Summer heat and winter cold both stop production."
+    },
+    "with_climate_control_months": {
+      "value": 10,
+      "status": "ASSUMPTION",
+      "note": "Months per year once ventilation, heating and irrigation are held to target by a controller."
+    },
+    "with_supplemental_light_months": {
+      "value": 12,
+      "status": "ASSUMPTION",
+      "note": "Year-round production once winter light is topped up. Assumes climate control is already in place."
+    },
+    "control_yield_factor": {
+      "value": 1.15,
+      "status": "ASSUMPTION",
+      "note": "Yield per cycle improvement from holding EC, pH and climate within range rather than letting them drift."
+    },
+    "supplemental_light_w_per_m2": {
+      "value": 90,
+      "status": "ASSUMPTION",
+      "note": "Installed LED power per m² of growing area for a winter top-up in a greenhouse. Not a full sole-source lighting load."
+    },
+    "supplemental_light_hours_per_day": {
+      "value": 5,
+      "status": "ASSUMPTION",
+      "note": "Daily top-up hours during the months when natural light is short."
+    },
+    "supplemental_light_months": {
+      "value": 4,
+      "status": "ASSUMPTION",
+      "note": "Months per year the top-up actually runs."
+    }
+  }
 }

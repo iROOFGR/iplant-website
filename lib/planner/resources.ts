@@ -18,12 +18,21 @@
  * low conventional figure gives the conservative end.
  */
 
-import { getCrop, getSystem } from "./data";
+import { getCrop, getSystem, growdata } from "./data";
 import type { CropId, CropYield, EnergyResult, Range, SystemId, WaterResult } from "./types";
 
 const DAYS_PER_YEAR = 365;
+const REFERENCE_AREA_M2 = growdata.meta.density_reference.reference_area_m2;
 
-export function computeWater(yields: CropYield[]): WaterResult {
+/**
+ * `water_l_per_cycle_per_tray` is likewise authored against the HUG tray, so
+ * it is scaled by the element's growing area for other systems.
+ */
+export function computeWater(
+  yields: CropYield[],
+  elementAreaM2: number = REFERENCE_AREA_M2,
+): WaterResult {
+  const areaScale = elementAreaM2 / REFERENCE_AREA_M2;
   let litresPerYear = 0;
   let conventionalLow = 0;
   let conventionalHigh = 0;
@@ -32,7 +41,7 @@ export function computeWater(yields: CropYield[]): WaterResult {
     const c = getCrop(y.crop as CropId);
     const cyclesPerYear = DAYS_PER_YEAR / c.cycle_days;
 
-    litresPerYear += y.traysAllocated * c.water_l_per_cycle_per_tray * cyclesPerYear;
+    litresPerYear += y.traysAllocated * c.water_l_per_cycle_per_tray * areaScale * cyclesPerYear;
 
     // Conventional demand scales with how much was actually harvested.
     conventionalLow += y.kgPerYear.low * c.conventional_water_l_per_kg.value;
@@ -71,7 +80,12 @@ export function computeWater(yields: CropYield[]): WaterResult {
   };
 }
 
-export function computeEnergy(yields: CropYield[], system: SystemId): EnergyResult {
+export function computeEnergy(
+  yields: CropYield[],
+  system: SystemId,
+  elementAreaM2: number = REFERENCE_AREA_M2,
+): EnergyResult {
+  const areaScale = elementAreaM2 / REFERENCE_AREA_M2;
   const s = getSystem(system);
   const isDaylight = s.lighting === "daylight";
 
@@ -84,7 +98,7 @@ export function computeEnergy(yields: CropYield[], system: SystemId): EnergyResu
   for (const y of yields) {
     const c = getCrop(y.crop as CropId);
     const cyclesPerYear = DAYS_PER_YEAR / c.cycle_days;
-    kwhPerYear += y.traysAllocated * c.kwh_per_cycle_per_tray * cyclesPerYear;
+    kwhPerYear += y.traysAllocated * c.kwh_per_cycle_per_tray * areaScale * cyclesPerYear;
   }
 
   return { kwhPerYear: Math.round(kwhPerYear), isDaylight: false };

@@ -875,7 +875,8 @@
     "environments": {
       "indoor": "Indoor room",
       "retail": "Retail or dining floor",
-      "rooftop": "Rooftop"
+      "rooftop": "Rooftop",
+      "greenhouse": "Greenhouse"
     },
     "settings": {
       "restaurant": "Restaurant",
@@ -883,7 +884,8 @@
       "office": "Office",
       "school": "School",
       "home": "Home",
-      "retail": "Retail"
+      "retail": "Retail",
+      "farm": "Farm or grower"
     },
     "crops": {
       "lettuce": "Lettuce",
@@ -928,6 +930,37 @@
       "note": "Your plan travels with the enquiry, so the first reply can be specific.",
       "secondary": "Start over",
       "messagePrefix": "My plan from the site"
+    },
+    "modes": {
+      "title": "What are you planning?",
+      "newBuild": "A new system",
+      "newBuildHint": "Size a system for a space you have",
+      "upgrade": "I already grow",
+      "upgradeHint": "See what control and lighting would add"
+    },
+    "uplift": {
+      "eyebrow": "Grower upgrade",
+      "headline": "What would control and light add?",
+      "intro": "Most greenhouses in the region stop producing twice a year — once to summer heat, once to winter cold and short days. Holding the climate and topping up the light closes both gaps.",
+      "areaLabel": "Greenhouse area",
+      "cropLabel": "Main crop",
+      "currentLabel": "What you run today",
+      "levels": {
+        "none": "Passive greenhouse",
+        "controlled": "With iPlant controller",
+        "lit": "Controller + supplemental light"
+      },
+      "levelHints": {
+        "none": "Ventilation and irrigation by hand, no climate control",
+        "controlled": "Climate, irrigation and nutrients held to target automatically",
+        "lit": "Winter light topped up so production continues year round"
+      },
+      "monthsLabel": "Productive months",
+      "yieldLabel": "Annual harvest",
+      "gainLabel": "Added vs today",
+      "lightingCostLabel": "Supplemental lighting",
+      "noGain": "This is what you run today",
+      "current": "Today"
     }
   }
 }
