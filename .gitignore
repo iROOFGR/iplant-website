@@ -14,3 +14,6 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+# Dev server build output (separate from .next so builds cannot clobber it)
+.next-dev/

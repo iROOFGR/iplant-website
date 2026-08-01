@@ -3,11 +3,24 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Dev and build write to separate directories.
+ *
+ * Sharing `.next` between them means running `next build` while `next dev` is
+ * live overwrites the running server's chunks, and it starts throwing
+ * `Cannot find module './vendor-chunks/*.js'` on every request. It looks like
+ * the site is broken when nothing is wrong with the code. Splitting the
+ * directories makes that failure impossible rather than something you have to
+ * remember not to do.
+ */
+const distDir = process.env.NODE_ENV === "development" ? ".next-dev" : ".next";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   outputFileTracingRoot: __dirname,
+  distDir,
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 640, 828, 1080, 1280, 1920, 2560],
