@@ -25,10 +25,10 @@ export default async function ContactPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ type?: string }>;
+  searchParams: Promise<{ type?: string; plan?: string }>;
 }) {
   const { locale } = await params;
-  const { type } = await searchParams;
+  const { type, plan } = await searchParams;
   if (!isLocale(locale)) notFound();
   const typedLocale: Locale = locale;
   const content = getContent(typedLocale);
@@ -41,7 +41,12 @@ export default async function ContactPage({
 
       <Section tone="warm">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-          <ContactForm content={content} locale={typedLocale} initialType={initialType} />
+          <ContactForm
+            content={content}
+            locale={typedLocale}
+            initialType={initialType}
+            plan={plan}
+          />
 
           <aside className="rounded-sm border border-line p-7">
             <h2 className="eyebrow opacity-60">{page.directLabel}</h2>

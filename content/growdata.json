@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "updated": "2026-08-01",
+    "status": "DEFAULTS_PENDING_FIELD_VALIDATION",
+    "note": "Single source of truth for the Fit My Space planner. The site reads this at runtime — updating a figure here needs no code change. Every agronomic number is an editable default drawn from published hydroponic practice, NOT yet validated against iPlant field data. Replace values as validation completes.",
+    "disclaimer_en": "A simplified model with default coefficients, for planning rather than prediction. Figures update as iPlant field validation completes.",
+    "disclaimer_ar": "نموذج مبسّط بمعاملات افتراضية، للتخطيط لا للتنبؤ. تُحدَّث الأرقام مع اكتمال التحقق الميداني لدى آي بلانت."
+  },
+  "systems": {
+    "hug": {
+      "id": "hug",
+      "name": "HUG",
+      "fullName_en": "Home Urban Garden",
+      "fullName_ar": "الحديقة الحضرية المنزلية",
+      "method": "deep_flow_technique",
+      "dimensions_status": "INDICATIVE_PENDING_AS_BUILT",
+      "footprint_m": {
+        "w": 1.2,
+        "d": 0.8
+      },
+      "height_m": 1.95,
+      "tiers": 4,
+      "tier_spacing_m": 0.45,
+      "trays_per_tier": 1,
+      "tray_m": {
+        "l": 1.1,
+        "w": 0.7,
+        "depth": 0.12
+      },
+      "access_clearance_m": 0.7,
+      "environments": [
+        "indoor",
+        "retail"
+      ],
+      "lighting": "led_controlled",
+      "faas_available": true
+    },
+    "rooftop": {
+      "id": "rooftop",
+      "name_en": "Productive Rooftop Farming",
+      "name_ar": "زراعة الأسطح المنتجة",
+      "method": "open_air_channels",
+      "dimensions_status": "INDICATIVE_PENDING_AS_BUILT",
+      "bed_m": {
+        "l": 2.0,
+        "w": 1.0
+      },
+      "plants_per_bed_factor": 1.0,
+      "access_clearance_m": 0.8,
+      "environments": [
+        "rooftop"
+      ],
+      "lighting": "daylight",
+      "faas_available": false
+    }
+  },
+  "environments": {
+    "indoor": {
+      "id": "indoor",
+      "system": "hug",
+      "usable_area_fraction": {
+        "value": 0.75,
+        "status": "ASSUMPTION",
+        "note": "Share of a room's floor area realistically available for units after furniture, circulation and services."
+      }
+    },
+    "retail": {
+      "id": "retail",
+      "system": "hug",
+      "usable_area_fraction": {
+        "value": 0.6,
+        "status": "ASSUMPTION",
+        "note": "Retail and hospitality floors keep more circulation space than a back-of-house room."
+      }
+    },
+    "rooftop": {
+      "id": "rooftop",
+      "system": "rooftop",
+      "usable_area_fraction": {
+        "value": 0.55,
+        "status": "ASSUMPTION",
+        "note": "Excludes parapet setbacks, plant rooms, water tanks, access routes and shaded strips. A structural survey always governs the real figure."
+      }
+    }
+  },
+  "settings": [
+    {
+      "id": "restaurant",
+      "environments": [
+        "indoor",
+        "retail",
+        "rooftop"
+      ],
+      "typical_units": {
+        "value": 2,
+        "status": "ASSUMPTION",
+        "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
+      }
+    },
+    {
+      "id": "hotel",
+      "environments": [
+        "indoor",
+        "retail",
+        "rooftop"
+      ],
+      "typical_units": {
+        "value": 4,
+        "status": "ASSUMPTION",
+        "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
+      }
+    },
+    {
+      "id": "office",
+      "environments": [
+        "indoor",
+        "rooftop"
+      ],
+      "typical_units": {
+        "value": 2,
+        "status": "ASSUMPTION",
+        "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
+      }
+    },
+    {
+      "id": "school",
+      "environments": [
+        "indoor",
+        "rooftop"
+      ],
+      "typical_units": {
+        "value": 3,
+        "status": "ASSUMPTION",
+        "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
+      }
+    },
+    {
+      "id": "home",
+      "environments": [
+        "indoor",
+        "rooftop"
+      ],
+      "typical_units": {
+        "value": 1,
+        "status": "ASSUMPTION",
+        "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
+      }
+    },
+    {
+      "id": "retail",
+      "environments": [
+        "retail",
+        "indoor"
+      ],
+      "typical_units": {
+        "value": 3,
+        "status": "ASSUMPTION",
+        "note": "Typical starting deployment for this setting. The visitor can change it; the space capacity is the ceiling."
+      }
+    }
+  ],
+  "tariffs": {
+    "amman": {
+      "water_jd_per_m3": {
+        "value": 2.0,
+        "status": "TO_CONFIRM",
+        "source": "Miyahuna commercial tariff — confirm bracket"
+      },
+      "power_jd_per_kwh": {
+        "value": 0.12,
+        "status": "TO_CONFIRM",
+        "source": "EDCO/JEPCO commercial tariff — confirm bracket"
+      }
+    }
+  },
+  "faas": {
+    "from_jd_per_unit_month": 200,
+    "pricing_factors": [
+      "unit_count",
+      "crop_selection",
+      "automation_level",
+      "site_conditions",
+      "reporting_requirements"
+    ]
+  },
+  "crops": [
+    {
+      "id": "lettuce",
+      "name_en": "Lettuce",
+      "name_ar": "خس",
+      "plants_per_tray": 24,
+      "cycle_days": 35,
+      "harvest_g_per_plant": {
+        "low": 120,
+        "high": 180
+      },
+      "water_l_per_cycle_per_tray": 110,
+      "kwh_per_cycle_per_tray": 18,
+      "conventional_water_l_per_kg": {
+        "value": 240,
+        "status": "DEFAULT",
+        "source": "FAO / Mekonnen–Hoekstra water footprint literature, open-field lettuce — cite exact figure before publishing"
+      },
+      "market_price_jd_per_kg_default": 1.1,
+      "setpoints": {
+        "ec_ms_cm": [
+          1.2,
+          1.8
+        ],
+        "ph": [
+          5.8,
+          6.2
+        ],
+        "water_temp_c": [
+          18,
+          22
+        ],
+        "light_h": [
+          14,
+          16
+        ]
+      },
+      "environments": [
+        "indoor",
+        "retail",
+        "rooftop"
+      ]
+    },
+    {
+      "id": "basil",
+      "name_en": "Basil",
+      "name_ar": "ريحان",
+      "plants_per_tray": 20,
+      "cycle_days": 28,
+      "harvest_g_per_plant": {
+        "low": 60,
+        "high": 110
+      },
+      "water_l_per_cycle_per_tray": 90,
+      "kwh_per_cycle_per_tray": 16,
+      "conventional_water_l_per_kg": {
+        "value": 300,
+        "status": "DEFAULT",
+        "source": "Water footprint literature, open-field herbs — cite exact figure before publishing"
+      },
+      "market_price_jd_per_kg_default": 3.5,
+      "setpoints": {
+        "ec_ms_cm": [
+          1.0,
+          1.6
+        ],
+        "ph": [
+          5.6,
+          6.4
+        ],
+        "water_temp_c": [
+          20,
+          25
+        ],
+        "light_h": [
+          14,
+          18
+        ]
+      },
+      "environments": [
+        "indoor",
+        "retail",
+        "rooftop"
+      ]
+    },
+    {
+      "id": "mint",
+      "name_en": "Mint",
+      "name_ar": "نعنع",
+      "plants_per_tray": 20,
+      "cycle_days": 30,
+      "harvest_g_per_plant": {
+        "low": 70,
+        "high": 120
+      },
+      "water_l_per_cycle_per_tray": 95,
+      "kwh_per_cycle_per_tray": 15,
+      "conventional_water_l_per_kg": {
+        "value": 280,
+        "status": "DEFAULT",
+        "source": "Water footprint literature, open-field herbs — cite exact figure before publishing"
+      },
+      "market_price_jd_per_kg_default": 2.2,
+      "setpoints": {
+        "ec_ms_cm": [
+          1.2,
+          2.0
+        ],
+        "ph": [
+          5.8,
+          6.5
+        ],
+        "water_temp_c": [
+          18,
+          24
+        ],
+        "light_h": [
+          13,
+          16
+        ]
+      },
+      "environments": [
+        "indoor",
+        "retail",
+        "rooftop"
+      ]
+    }
+  ]
+}

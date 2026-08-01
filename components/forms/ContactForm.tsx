@@ -78,10 +78,16 @@ export function ContactForm({
   content,
   locale,
   initialType = "project",
+  plan,
 }: {
   content: Content;
   locale: Locale;
   initialType?: EnquiryType;
+  /**
+   * A plan summary carried over from the planner. Seeded into the message so
+   * the enquiry arrives already scoped rather than "I'd like more information".
+   */
+  plan?: string;
 }) {
   const [type, setType] = useState<EnquiryType>(initialType);
   const [status, setStatus] = useState<Status>("idle");
@@ -244,6 +250,7 @@ export function ContactForm({
           name={type === "project" ? "challenge" : "message"}
           rows={5}
           required={type === "project"}
+          defaultValue={plan ? `${content.planner.cta.messagePrefix}: ${plan}` : undefined}
           className={inputClass}
         />
       </p>

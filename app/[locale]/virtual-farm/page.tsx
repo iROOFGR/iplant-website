@@ -5,6 +5,7 @@ import { getContent } from "@/lib/content";
 import { localizedMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/ui/PageHero";
 import { VirtualFarmExplorer } from "@/components/sections/VirtualFarmExplorer";
+import { GrowPlanner } from "@/components/planner/GrowPlanner";
 import { FinalCta } from "@/components/sections/HomeSections";
 
 export async function generateMetadata({
@@ -15,8 +16,8 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
-  const page = getContent(typedLocale).pages.virtualFarm;
-  return localizedMetadata({ locale: typedLocale, path: "/virtual-farm", title: page.title, description: page.intro, image: "/media/systems/productive-rooftop-farming.webp" });
+  const content = getContent(typedLocale);
+  return localizedMetadata({ locale: typedLocale, path: "/virtual-farm", title: content.planner.headline, description: content.planner.intro, image: "/media/systems/productive-rooftop-farming.webp" });
 }
 
 export default async function VirtualFarmPage({
@@ -28,16 +29,18 @@ export default async function VirtualFarmPage({
   if (!isLocale(locale)) notFound();
   const typedLocale: Locale = locale;
   const content = getContent(typedLocale);
-  const page = content.pages.virtualFarm;
 
   return (
     <>
       <PageHero
-        eyebrow={content.virtualFarm.eyebrow}
-        headline={page.headline}
-        intro={page.intro}
+        eyebrow={content.planner.eyebrow}
+        headline={content.planner.headline}
+        intro={content.planner.intro}
         image="/media/systems/productive-rooftop-farming.webp"
       />
+      <div className="bg-paper-warm text-ink">
+        <GrowPlanner locale={typedLocale} content={content} />
+      </div>
       <div className="bg-paper text-ink">
         <VirtualFarmExplorer content={content} />
       </div>

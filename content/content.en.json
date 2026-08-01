@@ -849,5 +849,85 @@
       }
     ],
     "interactionHint": "Hover, focus or tap to turn each benefit"
+  },
+  "planner": {
+    "eyebrow": "Plan your system",
+    "headline": "What could you grow in your space?",
+    "intro": "Tell us the space, the setting and what you want on the plate. We will size the system, estimate the harvest, and show what it means for water.",
+    "steps": {
+      "space": "Your space",
+      "setting": "Where it goes",
+      "crops": "What you grow",
+      "scale": "How many units"
+    },
+    "labels": {
+      "area": "Floor area",
+      "areaUnit": "m²",
+      "areaHelp": "Roughly the area available. You can change it at any time.",
+      "environment": "Type of space",
+      "setting": "Setting",
+      "crops": "Crops",
+      "cropsHelp": "Pick one or more. Growing trays are shared evenly between them.",
+      "units": "Units to install",
+      "unitsOf": "of {max} the space allows",
+      "typical": "typical for this setting"
+    },
+    "environments": {
+      "indoor": "Indoor room",
+      "retail": "Retail or dining floor",
+      "rooftop": "Rooftop"
+    },
+    "settings": {
+      "restaurant": "Restaurant",
+      "hotel": "Hotel",
+      "office": "Office",
+      "school": "School",
+      "home": "Home",
+      "retail": "Retail"
+    },
+    "crops": {
+      "lettuce": "Lettuce",
+      "basil": "Basil",
+      "mint": "Mint"
+    },
+    "results": {
+      "title": "Your plan",
+      "systemLabel": "Recommended system",
+      "unitsLabel": "Units",
+      "traysLabel": "Growing trays",
+      "harvestLabel": "Estimated harvest",
+      "harvestUnit": "kg per month",
+      "harvestYear": "{low}–{high} kg per year",
+      "waterLabel": "Water",
+      "waterUse": "{value} litres per year",
+      "waterSaved": "{low}–{high}% less than open field",
+      "waterPerKg": "{low}–{high} litres per kg grown",
+      "energyLabel": "Electricity",
+      "energyUse": "{value} kWh per year",
+      "energyDaylight": "Daylight grown — no grow lighting",
+      "perCrop": "Per crop",
+      "cycles": "{value} harvests per year",
+      "plants": "{value} plants"
+    },
+    "tooSmall": {
+      "title": "That space is smaller than one unit.",
+      "body": "A HUG unit needs roughly two square metres once you allow room to work at it. Tell us about the space and we will suggest something that fits."
+    },
+    "assumptions": {
+      "title": "What this estimate assumes",
+      "toggle": "Show assumptions",
+      "toggleHide": "Hide assumptions",
+      "usableArea": "Usable share of the space: {value}. Furniture, circulation and services take the rest.",
+      "dimensions": "System dimensions are indicative and pending as-built confirmation.",
+      "conventionalWater": "Open-field comparison uses published water-footprint figures, not iPlant measurements.",
+      "yields": "Yields are literature defaults, not yet validated against iPlant field data.",
+      "typicalUnits": "Unit count defaults to a typical deployment for the setting. Your space may allow more."
+    },
+    "cta": {
+      "label": "Send this plan to iPlant",
+      "note": "Your plan travels with the enquiry, so the first reply can be specific.",
+      "secondary": "Start over",
+      "messagePrefix": "My plan from the site"
+    }
   }
 }
