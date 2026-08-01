@@ -1,0 +1,853 @@
+{
+  "site": {
+    "description": "Urban farming solutions for real MENA conditions.",
+    "tagline": "iPlant is an urban farming solutions company developing smart growing systems for real MENA conditions.",
+    "brandTagline": "Urban growing systems",
+    "location": "Amman, Jordan",
+    "whatsappLabel": "WhatsApp",
+    "seoTitle": "Urban Farming & Smart Growing Systems in Jordan",
+    "seoDescription": "iPlant designs controlled-environment, vertical, rooftop and AI-supported growing systems for Jordan and real MENA conditions."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "التبديل إلى العربية",
+    "heroRegion": "Cinematic introduction",
+    "heroStaticNotice": "Animation is reduced. The introduction is shown as still images.",
+    "scrollHint": "Scroll to start growing",
+    "expandTile": "Show details",
+    "collapseTile": "Hide details",
+    "mainNavigation": "Main navigation",
+    "mobileMenu": "Mobile navigation menu"
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Systems",
+      "href": "/systems"
+    },
+    {
+      "label": "Farming as a Service",
+      "href": "/farming-as-a-service"
+    },
+    {
+      "label": "iRoof",
+      "href": "IROOF_URL",
+      "external": true
+    },
+    {
+      "label": "Projects",
+      "href": "/projects"
+    },
+    {
+      "label": "Consultation",
+      "href": "/consultation"
+    },
+    {
+      "label": "Virtual Farm",
+      "href": "/virtual-farm"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "navCta": {
+    "label": "Start a project",
+    "href": "/contact?type=project"
+  },
+  "hero": {
+    "headline": "Building smarter systems for a changing climate.",
+    "supporting": "We develop smart urban farming systems for real MENA conditions.",
+    "endHeadline": "Fresh growing, fully managed.",
+    "primaryCta": {
+      "label": "Explore HUG",
+      "href": "/systems/hug"
+    },
+    "secondaryCta": {
+      "label": "Start a project",
+      "href": "/contact?type=project"
+    },
+    "scenes": [
+      {
+        "id": "arid-drop",
+        "label": "In Jordan, water decides what grows."
+      },
+      {
+        "id": "splash-mix",
+        "label": "So we make every drop count."
+      },
+      {
+        "id": "water-rise",
+        "label": "Delivered exactly where the root needs it."
+      },
+      {
+        "id": "hug-grow",
+        "label": "Conditions held, around the clock."
+      },
+      {
+        "id": "harvest-pizza",
+        "label": "Harvested where it is eaten."
+      }
+    ]
+  },
+  "systems": {
+    "eyebrow": "Systems",
+    "backLabel": "All systems",
+    "heading": "Systems designed around the space, climate and resources available.",
+    "items": [
+      {
+        "id": "hug",
+        "title": "HUG",
+        "description": "A compact, fully automated growing unit for restaurants, cafés, offices, schools and homes.",
+        "image": "/media/systems/hug-installed.webp",
+        "href": "/systems/hug",
+        "tags": [
+          "Indoor growing",
+          "Automated climate",
+          "Fresh herbs and greens"
+        ],
+        "fullName": "Home Urban Garden"
+      },
+      {
+        "id": "greenspin",
+        "title": "GREENSPIN",
+        "description": "A rotating carousel that turns plants through daylight — no artificial grow lights, with optional solar. Built for tight footprints and off-grid sites.",
+        "image": "/media/systems/greenspin.webp",
+        "video": "/media/systems/greenspin.mp4",
+        "poster": "/media/systems/greenspin-poster.webp",
+        "href": "/systems/greenspin",
+        "tags": [
+          "Rotating carousel",
+          "Daylight, no grow lights",
+          "Off-grid capable"
+        ],
+        "fullName": ""
+      },
+      {
+        "id": "rooftop",
+        "title": "Productive Rooftop Farming",
+        "description": "Turn underused rooftops into productive growing spaces adapted to hot, dry cities.",
+        "image": "/media/systems/productive-rooftop-farming.webp",
+        "href": "/systems/rooftop-farming",
+        "tags": [
+          "Rooftop production",
+          "Local food",
+          "Climate-adapted design"
+        ]
+      },
+      {
+        "id": "automation",
+        "title": "Smart Controllers, Automation & AI",
+        "description": "Monitor and manage irrigation, lighting, climate and nutrients through one connected control layer, with AI-assisted optimisation.",
+        "image": "/media/systems/automation-dashboard.webp",
+        "href": "/systems/automation",
+        "tags": [
+          "Monitoring",
+          "Automation",
+          "AI optimisation",
+          "Remote access"
+        ]
+      }
+    ],
+    "benefitsHeading": "Designed to deliver more with less.",
+    "benefits": [
+      {
+        "title": "Use water precisely",
+        "body": "Recirculating delivery puts water and nutrients where plants need them, reducing avoidable waste."
+      },
+      {
+        "title": "Grow beyond the season",
+        "body": "Controlled conditions support reliable production through changing weather and temperatures."
+      },
+      {
+        "title": "Serve premium produce",
+        "body": "Harvest herbs, leafy greens and selected crops close to where they are prepared and eaten."
+      },
+      {
+        "title": "Operate intelligently",
+        "body": "Connected monitoring, automation and AI-assisted analysis support faster, better-informed decisions."
+      }
+    ]
+  },
+  "faas": {
+    "eyebrow": "Farming as a Service",
+    "headline": "Fresh growing, fully managed.",
+    "price": "HUG from 200 JOD/month",
+    "description": "iPlant takes care of the system from installation onward, allowing clients to grow fresh produce without managing the technical operation themselves.",
+    "includesLabel": "The subscription includes",
+    "includes": [
+      "HUG unit",
+      "Installation",
+      "Remote monitoring",
+      "Nutrients and seedlings",
+      "Maintenance and technical support",
+      "Scheduled harvesting",
+      "Scheduled service visits"
+    ],
+    "pricingNote": "Final pricing depends on unit configuration, location and service requirements.",
+    "primaryCta": {
+      "label": "Explore the HUG service",
+      "href": "/farming-as-a-service"
+    },
+    "secondaryCta": {
+      "label": "Request availability",
+      "href": "/contact?type=hug"
+    },
+    "video": "/media/systems/hug-interior.mp4",
+    "videoWebm": "/media/systems/hug-interior.webm",
+    "poster": "/media/systems/hug-interior-poster.webp",
+    "openingVideo": "/media/systems/hug-interior.mp4",
+    "openingVideoWebm": "/media/systems/hug-interior.webm",
+    "openingPoster": "/media/systems/hug-interior-poster.webp",
+    "openingVideoAlt": "The doors of a HUG indoor growing unit opening to reveal crops and growing lights."
+  },
+  "iroof": {
+    "headline": "Turn unused roofs into living infrastructure.",
+    "description": "Modular green-roof tiles for hot, dry cities — designed to retain water, reduce rooftop heat and create greener urban spaces.",
+    "image": "/media/iroof/iroof-installation.webp",
+    "video": "/media/iroof/iroof-tray.mp4",
+    "videoWebm": "/media/iroof/iroof-tray.webm",
+    "poster": "/media/iroof/iroof-tray-poster.webp",
+    "cta": {
+      "label": "Explore iRoof",
+      "href": "IROOF_URL",
+      "external": true
+    }
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "heading": "Built, tested and deployed.",
+    "labels": {
+      "challenge": "Challenge",
+      "solution": "iPlant solution",
+      "result": "Result",
+      "partners": "Partners",
+      "location": "Location"
+    },
+    "items": [
+      {
+        "id": "rss",
+        "title": "Vertical Farming for Climate Resilience",
+        "partnerLine": "UNDP Jordan and the Royal Scientific Society · Funded by Sida",
+        "location": "Jerash, Mafraq and the Jordan Valley",
+        "image": "/media/projects/project-rss.webp",
+        "challenge": "Water scarcity and limited growing space make reliable local production difficult in several Jordanian communities.",
+        "solution": "iPlant deployed smart vertical farming units with integrated controller technology under “Scaling up Water Innovation for Climate Security”.",
+        "result": "The project demonstrated consistent controlled crop production with reduced water demand across multiple Jordanian sites.",
+        "needsConfirmation": true
+      },
+      {
+        "id": "igrow",
+        "title": "iGROW",
+        "partnerLine": "NARC and i.GREENs",
+        "location": "Amman and Aqaba",
+        "image": "/media/projects/project-igrow.webp",
+        "challenge": "Urban agriculture needs to make better use of water, energy and underused city spaces.",
+        "solution": "iPlant contributed hydroponic systems and control technology to an integrated model combining growing, solar energy, greywater treatment and rainwater harvesting.",
+        "result": "The project demonstrated how multiple resource systems can work together in an urban sustainability model.",
+        "needsConfirmation": true
+      },
+      {
+        "id": "cea",
+        "title": "CEA Research Room",
+        "partnerLine": "Jordan University — Deir Alla",
+        "location": "Deir Alla, Jordan",
+        "image": "/media/projects/project-cea-room.webp",
+        "challenge": "Researchers need repeatable growing conditions for year-round trials and environmental studies.",
+        "solution": "iPlant built a climate-controlled indoor farming environment with monitored lighting, irrigation and environmental conditions.",
+        "result": "The facility supports controlled plant trials and academic research throughout the year.",
+        "needsConfirmation": true,
+        "video": "/media/systems/turn-on.mp4",
+        "videoWebm": "/media/systems/turn-on.webm",
+        "poster": "/media/systems/turn-on-poster.webp"
+      },
+      {
+        "id": "greenroof",
+        "title": "Urban Green Roof",
+        "partnerLine": "Agricultural education centre",
+        "location": "Amman, Jordan",
+        "image": "/media/systems/productive-rooftop-farming.webp",
+        "challenge": "Rooftops across Amman sit unused while the city absorbs heat and imports most of its fresh produce.",
+        "solution": "iPlant built a productive rooftop for leafy greens at an agricultural education centre, doubling as a teaching space.",
+        "result": "The roof produces food where it is eaten, reduces heat absorbed by the building, and demonstrates rooftop farming to students and visitors.",
+        "needsConfirmation": true
+      }
+    ],
+    "allLabel": "See all projects"
+  },
+  "consultation": {
+    "eyebrow": "Consultation & Studies",
+    "headline": "Develop a solution with iPlant.",
+    "description": "End-to-end agritech consultancy covering feasibility studies, crop planning, water and energy systems, automation, controlled environments, technical design and implementation planning.",
+    "images": [
+      {
+        "src": "/media/consultation/consultation-02.webp",
+        "alt": "An iPlant engineer commissioning a controller unit on site."
+      },
+      {
+        "src": "/media/consultation/consultation-01.webp",
+        "alt": "An indoor crop trial under controlled growing conditions."
+      },
+      {
+        "src": "/media/consultation/consultation-03.webp",
+        "alt": "A controlled plant trial with edible flowering crops."
+      }
+    ],
+    "services": [
+      "Site and feasibility assessment",
+      "Crop and production planning",
+      "Hydroponic and controlled-environment design",
+      "Water and nutrient system design",
+      "Energy and renewable integration",
+      "Automation and controller integration",
+      "Implementation planning",
+      "Commissioning, training and technical support"
+    ],
+    "cta": {
+      "label": "Start a project",
+      "href": "/contact?type=project"
+    }
+  },
+  "virtualFarm": {
+    "eyebrow": "Virtual Farm",
+    "headline": "Step inside the farm.",
+    "description": "Explore how water, crops, energy and automation work together across iPlant systems.",
+    "cta": {
+      "label": "Explore the Virtual Farm",
+      "href": "/virtual-farm"
+    },
+    "zones": [
+      {
+        "id": "hug",
+        "title": "HUG indoor unit",
+        "image": "/media/systems/hug-installed.webp",
+        "water": "Recirculating nutrient solution in a closed tank, dosed automatically.",
+        "crop": "Herbs and leafy greens on a continuous harvest cycle.",
+        "energy": "LED grow lighting on a controlled daily schedule.",
+        "control": "Temperature, humidity and irrigation monitored by the iPlant controller."
+      },
+      {
+        "id": "greenspin",
+        "title": "GREENSPIN vertical system",
+        "image": "/media/systems/greenspin.webp",
+        "water": "Vertical irrigation lines feeding stacked growing channels.",
+        "crop": "High-density leafy production in a constrained footprint.",
+        "energy": "Distributed lighting matched to the vertical growing plane.",
+        "control": "Automated cycling of irrigation and lighting across levels."
+      },
+      {
+        "id": "rooftop",
+        "title": "Productive rooftop",
+        "image": "/media/systems/productive-rooftop-farming.webp",
+        "water": "Irrigation designed around hot, dry rooftop conditions.",
+        "crop": "Open-air production on otherwise unused roof area.",
+        "energy": "Daylight-driven growing with optional solar integration.",
+        "control": "Scheduled irrigation adapted to seasonal demand."
+      },
+      {
+        "id": "automation",
+        "title": "Controllers and monitoring",
+        "image": "/media/systems/automation-dashboard.webp",
+        "water": "Irrigation and nutrient dosing driven by measured conditions.",
+        "crop": "Consistent growing conditions across every connected system.",
+        "energy": "Lighting and ventilation managed against target ranges.",
+        "control": "One connected control layer with remote visibility."
+      }
+    ],
+    "zoneLabels": {
+      "water": "Water",
+      "crop": "Crop",
+      "energy": "Energy",
+      "control": "Control"
+    },
+    "note": "This explorer shows how iPlant systems relate to one another. It does not display live data from deployed sites."
+  },
+  "aboutBand": {
+    "headline": "Designed in Jordan. Built for demanding environments.",
+    "description": "iPlant brings together controlled-environment agriculture, water systems, automation and practical deployment experience to create solutions suited to urban and water-scarce settings.",
+    "image": "/media/supporting/install-work.webp",
+    "cta": {
+      "label": "About iPlant",
+      "href": "/about"
+    }
+  },
+  "finalCta": {
+    "headline": "Bring your farming challenge to iPlant.",
+    "description": "From compact indoor systems to research facilities and urban farming projects, we design around the climate, space and resources available.",
+    "primaryCta": {
+      "label": "Start a project",
+      "href": "/contact?type=project"
+    },
+    "secondaryCta": {
+      "label": "WhatsApp iPlant",
+      "href": "WHATSAPP_URL",
+      "external": true
+    }
+  },
+  "footer": {
+    "blurb": "Urban farming solutions developed for real MENA conditions.",
+    "columns": {
+      "explore": "Explore",
+      "contact": "Contact",
+      "company": "Company"
+    },
+    "rights": "All rights reserved.",
+    "iroofNote": "iRoof is a separate iPlant product with its own website.",
+    "privacy": "Privacy",
+    "controllerLabel": "Existing clients: open the controller portal"
+  },
+  "pages": {
+    "systems": {
+      "title": "Systems",
+      "headline": "Growing systems for space, climate and resources.",
+      "intro": "iPlant designs and builds controlled growing systems that suit the environment they are deployed in — from compact indoor units to rooftop production and the control layer that runs them."
+    },
+    "hug": {
+      "title": "HUG",
+      "headline": "Controlled growing, at room scale.",
+      "intro": "HUG is a compact indoor growing system designed for hospitality, workplace, education and residential settings. It manages irrigation, lighting and climate automatically, so fresh herbs and leafy greens can be grown where they are used.",
+      "image": "/media/systems/hug-installed.webp",
+      "detailImage": "/media/systems/hug-canopy.webp",
+      "points": [
+        {
+          "title": "Where it fits",
+          "body": "Restaurants, hotels, offices, schools and homes — anywhere fresh produce is used and space is limited."
+        },
+        {
+          "title": "What it grows",
+          "body": "Herbs and leafy greens on a continuous cycle, harvested at the point of use."
+        },
+        {
+          "title": "How it runs",
+          "body": "Irrigation, lighting and climate are managed automatically and monitored by the iPlant controller."
+        },
+        {
+          "title": "How it is supplied",
+          "body": "Available outright or through Farming as a Service, where iPlant operates and maintains the system."
+        }
+      ]
+    },
+    "greenspin": {
+      "title": "GREENSPIN",
+      "headline": "Vertical growing that follows the sun.",
+      "intro": "GREENSPIN combines vertical farming with the MENA region’s abundant daylight. A rotating carousel moves trays through the growing cycle while water and nutrients recirculate, increasing productive area without relying on rows of artificial grow lights.",
+      "image": "/media/systems/greenspin.webp",
+      "video": "/media/systems/greenspin.mp4",
+      "poster": "/media/systems/greenspin-poster.webp",
+      "points": [
+        {
+          "title": "Use natural daylight",
+          "body": "The rotating structure gives crops more even access to available sunlight and reduces dependence on artificial grow lighting."
+        },
+        {
+          "title": "Move every tray through the cycle",
+          "body": "Carousel movement carries each tray through the growing system in a controlled, repeatable sequence."
+        },
+        {
+          "title": "Recirculate water and nutrients",
+          "body": "Water and nutrients return through the system instead of being used once and discarded."
+        },
+        {
+          "title": "Grow more in a compact footprint",
+          "body": "Vertical arrangement multiplies productive growing area and can be paired with solar power for suitable sites."
+        }
+      ]
+    },
+    "rooftop": {
+      "title": "Productive Rooftop Farming",
+      "headline": "Unused roof area, turned productive.",
+      "intro": "Productive Rooftop Farming brings food production to roof space that is otherwise doing nothing. Systems are specified for hot, dry conditions, with irrigation designed around real rooftop exposure rather than ideal growing conditions.",
+      "image": "/media/systems/productive-rooftop-farming.webp",
+      "note": "This is a growing system and service. iRoof — the modular green-roof tile product — is separate and has its own website.",
+      "points": [
+        {
+          "title": "Where it applies",
+          "body": "Commercial, institutional and residential rooftops with usable load capacity."
+        },
+        {
+          "title": "Climate-adapted design",
+          "body": "Irrigation and crop selection specified for heat, exposure and water limits."
+        },
+        {
+          "title": "Local food production",
+          "body": "Produce grown at the point of consumption, reducing transport and handling."
+        },
+        {
+          "title": "Integrated with control",
+          "body": "Can run under the same monitoring layer as iPlant's indoor systems."
+        }
+      ]
+    },
+    "automation": {
+      "title": "Smart Controllers, Automation & AI",
+      "headline": "One control layer across every system.",
+      "intro": "iPlant's controllers monitor and manage irrigation, lighting, climate and nutrient delivery. Conditions are measured continuously and held against target ranges, with remote visibility of how each system is running.",
+      "image": "/media/systems/automation-dashboard.webp",
+      "detailImage": "/media/systems/controller-field.webp",
+      "points": [
+        {
+          "title": "Monitoring",
+          "body": "Temperature, humidity and system conditions measured continuously at the growing plane."
+        },
+        {
+          "title": "Automation",
+          "body": "Irrigation, nutrient dosing, lighting and ventilation managed against target ranges."
+        },
+        {
+          "title": "Remote visibility",
+          "body": "System status is visible without needing to be on site."
+        },
+        {
+          "title": "Deployed in the field",
+          "body": "The same control technology runs across research rooms, vertical farms and indoor units."
+        },
+        {
+          "title": "AI-assisted optimisation",
+          "body": "Measured conditions feed decision-making that tunes irrigation, lighting and climate toward the target range, with image-based diagnostics in development."
+        }
+      ]
+    },
+    "faas": {
+      "title": "Farming as a Service",
+      "headline": "Fresh growing, fully managed.",
+      "intro": "Farming as a Service removes the operational burden of running a growing system. iPlant installs the unit, monitors it remotely, supplies nutrients and seedlings, maintains the hardware and harvests on a schedule.",
+      "image": "/media/systems/hug-installed.webp",
+      "howLabel": "How it works",
+      "how": [
+        {
+          "title": "Assess",
+          "body": "We look at the space, the produce needed and how the system will be used day to day."
+        },
+        {
+          "title": "Install",
+          "body": "iPlant delivers and commissions the unit, and sets the growing schedule."
+        },
+        {
+          "title": "Operate",
+          "body": "Conditions are monitored remotely, with nutrients and seedlings supplied on cycle."
+        },
+        {
+          "title": "Harvest",
+          "body": "Scheduled harvesting and service visits keep production continuous."
+        }
+      ]
+    },
+    "projects": {
+      "title": "Projects",
+      "headline": "Built, tested and deployed.",
+      "intro": "iPlant's research and development is demonstrated through deployed systems. Each project below was delivered with partners and is operating in real conditions."
+    },
+    "consultation": {
+      "title": "Consultation & Studies",
+      "headline": "Develop a solution with iPlant.",
+      "intro": "iPlant works with organisations from first feasibility question through to a commissioned, operating system — covering crop planning, water and energy systems, controlled environments, automation and implementation."
+    },
+    "virtualFarm": {
+      "title": "Virtual Farm",
+      "headline": "Step inside the farm.",
+      "intro": "Select a system to see how water, crops, energy and control work together across it."
+    },
+    "about": {
+      "title": "About",
+      "headline": "Designed in Jordan. Built for demanding environments.",
+      "intro": "iPlant is an urban farming solutions company based in Amman. We research, design, build and operate growing systems suited to the climate, space and water constraints of the MENA region.",
+      "image": "/media/supporting/install-work.webp",
+      "capabilitiesLabel": "What we do",
+      "capabilities": [
+        {
+          "title": "Controlled-environment agriculture",
+          "body": "Indoor and vertical growing systems designed around the crop and the space available."
+        },
+        {
+          "title": "Water and nutrient systems",
+          "body": "Closed-loop irrigation and dosing specified for water-scarce conditions."
+        },
+        {
+          "title": "Automation and control",
+          "body": "IoT-enabled controllers that monitor conditions and manage systems against target ranges."
+        },
+        {
+          "title": "Renewable and resource integration",
+          "body": "Solar, greywater and rainwater integrated where the project supports it."
+        },
+        {
+          "title": "Consultation and studies",
+          "body": "Feasibility, crop planning, technical design and implementation planning."
+        },
+        {
+          "title": "Training and support",
+          "body": "Commissioning, operator training and ongoing technical support after handover."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "headline": "Bring your farming challenge to iPlant.",
+      "intro": "Tell us about the space, the constraints and what you want to grow. We will come back with a practical next step.",
+      "directLabel": "Or reach us directly"
+    },
+    "privacy": {
+      "title": "Privacy",
+      "headline": "How iPlant handles website enquiries.",
+      "intro": "The contact forms collect only the information needed to respond to your enquiry. The site does not sell personal information or use it for unrelated marketing.",
+      "sections": [
+        {
+          "title": "Information collected",
+          "body": "Name, contact details, organisation, location and the project or service information you choose to provide."
+        },
+        {
+          "title": "How it is used",
+          "body": "To review your request, contact you and prepare an appropriate next step. Information is shared only with the iPlant team or service providers required to deliver the website and email."
+        },
+        {
+          "title": "Retention and requests",
+          "body": "Enquiry information is retained only as long as needed for business communication and legal obligations. You may contact iPlant to request access, correction or deletion."
+        }
+      ]
+    }
+  },
+  "forms": {
+    "tabs": {
+      "hug": "HUG / service enquiry",
+      "project": "Project / consultation enquiry"
+    },
+    "fields": {
+      "name": "Name",
+      "organization": "Organisation",
+      "organizationOptional": "Organisation (optional)",
+      "city": "City",
+      "cityCountry": "City and country",
+      "setting": "Setting",
+      "units": "Number of units (optional)",
+      "projectType": "Project type",
+      "space": "Available space (optional)",
+      "challenge": "Main challenge",
+      "timeline": "Estimated timeline (optional)",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message"
+    },
+    "settings": [
+      "Restaurant",
+      "Hotel",
+      "Office",
+      "School",
+      "Home",
+      "Retail",
+      "Other"
+    ],
+    "projectTypes": [
+      "Indoor or vertical farm",
+      "Rooftop farming",
+      "Research or CEA facility",
+      "Feasibility or technical study",
+      "Automation and controls",
+      "Other"
+    ],
+    "submit": "Send enquiry",
+    "sending": "Sending…",
+    "successTitle": "Thank you — your enquiry has been sent.",
+    "successBody": "We will reply by email. For anything urgent, WhatsApp is the fastest route.",
+    "errorTitle": "That did not send.",
+    "errorBody": "Please try again, or email us directly.",
+    "errorSummary": "Please check the following:",
+    "required": "This field is required.",
+    "invalidEmail": "Enter a valid email address.",
+    "fallbackNote": "You can also email us directly or message us on WhatsApp.",
+    "fallbackTitle": "Your enquiry is ready, but email delivery is not configured.",
+    "fallbackBody": "Please continue by email or WhatsApp so the iPlant team receives it.",
+    "privacyPrefix": "We use your details only to respond to this enquiry.",
+    "privacyLink": "Read the privacy notice."
+  },
+  "credibility": {
+    "eyebrow": "Validation",
+    "items": [
+      {
+        "value": "Deployed across Jordan",
+        "label": "Real systems in community, research, hospitality and education settings"
+      },
+      {
+        "value": "Partner-led projects",
+        "label": "Work developed with national and international institutions"
+      },
+      {
+        "value": "Field-tested control",
+        "label": "Controllers, monitoring and automation designed for demanding environments"
+      },
+      {
+        "value": "Built around each site",
+        "label": "System design adapted to available space, climate, crops and resources"
+      }
+    ]
+  },
+  "waterClaim": "Hydroponic growing uses up to 90% less water than the same crop in open field.",
+  "controller": {
+    "label": "Controller sign-in",
+    "title": "Already running an iPlant system?",
+    "body": "Sign in to your controller dashboard to monitor conditions, adjust schedules and review history from anywhere.",
+    "cta": "Sign in to your controller",
+    "href": "CONTROLLER_URL"
+  },
+  "field": {
+    "eyebrow": "Inside iPlant",
+    "headline": "Built in the real world.",
+    "body": "We test crops, monitor systems, grow, harvest and deploy in real spaces — then use what we learn to improve the next system.",
+    "items": [
+      {
+        "src": "/media/inside/team-trial-01.webp",
+        "shape": "wide",
+        "alt": "An iPlant team member checking plants during a controlled growing trial.",
+        "caption": "Test and refine"
+      },
+      {
+        "src": "/media/inside/controller-real.webp",
+        "shape": "wide",
+        "alt": "A real iPlant controller installed beside a growing system.",
+        "caption": "Monitor and control"
+      },
+      {
+        "src": "/media/inside/hug-interior.webp",
+        "shape": "wide",
+        "alt": "View inside an iPlant HUG growing unit with healthy crops under controlled lighting.",
+        "caption": "Grow consistently"
+      },
+      {
+        "src": "/media/inside/harvest-close.webp",
+        "shape": "wide",
+        "alt": "A hand harvesting a fresh leafy crop grown in an iPlant system.",
+        "caption": "Harvest fresh"
+      },
+      {
+        "src": "/media/inside/classroom-poster.webp",
+        "shape": "wide",
+        "alt": "An iPlant HUG growing unit installed in a classroom setting.",
+        "caption": "Deploy in real spaces"
+      }
+    ]
+  },
+  "notFound": {
+    "eyebrow": "Page not found",
+    "headline": "This page does not exist.",
+    "body": "The address may have changed, or the page may no longer be available.",
+    "cta": "Return to iPlant"
+  },
+  "controllerPortal": {
+    "label": "Controller portal",
+    "shortLabel": "Control login",
+    "description": "Existing iPlant clients can open the remote monitoring and control platform.",
+    "href": "CONTROLLER_URL"
+  },
+  "systemDetail": {
+    "mediaLabel": "System in context",
+    "logicEyebrow": "How the system works",
+    "logicHeading": "Designed as one operating system, not separate parts.",
+    "outcomesEyebrow": "What this changes",
+    "outcomesHeading": "Benefits built into the operating model.",
+    "outcomesIntro": "The value comes from the way water, space, crops and control are designed to work together — not from adding technology for its own sake.",
+    "deliveryEyebrow": "From concept to operation",
+    "deliveryHeading": "A practical path to a running system.",
+    "deliverySteps": [
+      {
+        "title": "Assess the site",
+        "body": "iPlant reviews the space, climate, water, energy and intended crop or use case."
+      },
+      {
+        "title": "Design the system",
+        "body": "The growing method, layout, controls and operating requirements are specified around the real site."
+      },
+      {
+        "title": "Build and commission",
+        "body": "The system is installed, tested and configured against the agreed growing plan."
+      },
+      {
+        "title": "Train, monitor and support",
+        "body": "Operators are trained and iPlant can continue with monitoring, maintenance and technical support."
+      }
+    ],
+    "primaryCta": {
+      "label": "Discuss this system",
+      "href": "/contact?type=project"
+    },
+    "faasCta": {
+      "label": "Explore the managed HUG service",
+      "href": "/farming-as-a-service"
+    },
+    "hugWalkthrough": {
+      "eyebrow": "Step inside HUG",
+      "heading": "Open the doors to a complete growing environment.",
+      "body": "Behind the glass, irrigation, lighting, airflow and crop access are organized around a compact daily operating routine.",
+      "points": [
+        "Crops remain visible and accessible",
+        "Growing conditions are managed automatically",
+        "Harvest happens close to the point of use"
+      ],
+      "videoAlt": "A HUG indoor growing unit opening to reveal crops, trays and grow lights."
+    }
+  },
+  "benefits": {
+    "eyebrow": "Why iPlant",
+    "heading": "Why controlled growing works better.",
+    "description": "Water, seasons, space and consistency are designed into the system instead of being left to chance.",
+    "revealLabel": "See the benefit",
+    "items": [
+      {
+        "id": "water",
+        "icon": "water",
+        "kicker": "Water-smart",
+        "title": "Use water more precisely.",
+        "body": "Recirculating hydroponic systems deliver water and nutrients directly to the root zone, reducing avoidable losses compared with open soil irrigation.",
+        "proof": "Recirculating delivery"
+      },
+      {
+        "id": "calendar",
+        "icon": "calendar",
+        "kicker": "Year-round",
+        "title": "Grow beyond the season.",
+        "body": "Controlled lighting, irrigation and environmental conditions support more consistent production through heat, cold and changing outdoor weather.",
+        "proof": "Controlled environment"
+      },
+      {
+        "id": "produce",
+        "icon": "produce",
+        "kicker": "Premium produce",
+        "title": "Harvest where food is used.",
+        "body": "Restaurants, hotels and workplaces can harvest fresh herbs and greens close to the kitchen, improving freshness, consistency and presentation.",
+        "proof": "From grow to plate"
+      },
+      {
+        "id": "space",
+        "icon": "space",
+        "kicker": "Space-efficient",
+        "title": "Make every square metre productive.",
+        "body": "Vertical, indoor and rooftop formats turn constrained or overlooked spaces into organized growing areas without requiring conventional farmland.",
+        "proof": "Vertical + rooftop formats"
+      },
+      {
+        "id": "control",
+        "icon": "control",
+        "kicker": "Automated control",
+        "title": "Replace guesswork with visibility.",
+        "body": "Sensors, controllers and remote monitoring help manage irrigation, lighting and environmental conditions while reducing the burden on the operator.",
+        "proof": "Sensors + automation"
+      },
+      {
+        "id": "resilience",
+        "icon": "resilience",
+        "kicker": "Resource-conscious",
+        "title": "Produce locally, with less dependence.",
+        "body": "Systems are designed around local climate, water, space and operational needs, helping cities build more resilient and shorter food-production chains.",
+        "proof": "Designed for MENA conditions"
+      }
+    ],
+    "interactionHint": "Hover, focus or tap to turn each benefit"
+  }
+}

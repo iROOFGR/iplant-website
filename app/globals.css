@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens.
+
+   Greens are sampled from the official logo: #104035 is the mark's dark green
+   and #28D6C0 its turquoise. Everything else is built around those two so the
+   palette can never drift away from the brand.
+
+   The page runs a deliberate value curve: near-black at the hero, warming to
+   sand and paper mid-page, brightest at the iRoof chapter (real daylight),
+   then settling dark again at the final call to action.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --color-ink: #060f0d;
+  --color-ink-soft: #0d1a17;
+  --color-forest: #104035;
+  --color-forest-light: #1b5c4c;
+  --color-aqua: #28d6c0;
+  --color-aqua-dim: #1a9d8c;
+  --color-leaf: #6e9b5b;
+  --color-sand: #c8b9a2;
+  --color-sand-soft: #e2d9cb;
+  --color-paper: #f4f1ea;
+  --color-paper-warm: #faf8f4;
+  --color-line: color-mix(in oklab, var(--color-ink) 14%, transparent);
+  --color-line-dark: color-mix(in oklab, var(--color-paper) 16%, transparent);
+
+  --font-sans: var(--font-plex), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* Fluid editorial scale. Display sizes are deliberately large; the brief
+     asks for big headings and very little copy over the cinematic sections. */
+  /* The upper bounds were tuned on a 1280px screen and read undersized on a
+     1600px+ display, where the page has far more room than the old caps
+     allowed. Minimums are unchanged so nothing grows on phones. */
+  /* Scaled against width AND height. Sizing on vw alone meant a wide, short
+     window (1536x674 is an ordinary laptop) rendered an 80px heading that ate
+     an eighth of the visible page. min() lets whichever axis is scarcer win. */
+  --text-display: clamp(2.5rem, min(6.6vw, 12vh), 7rem);
+  --text-h1: clamp(2rem, min(4.2vw, 7.6vh), 4rem);
+  --text-h2: clamp(1.6rem, min(2.9vw, 5.2vh), 2.75rem);
+  --text-h3: clamp(1.15rem, min(1.9vw, 3.4vh), 1.7rem);
+  --text-lead: clamp(1.125rem, min(1.65vw, 2.9vh), 1.5rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+
+* {
+  min-inline-size: 0;
+}
+
+html {
+  /* Native scroll only. No smooth-scroll library is layered over this: the
+     hero is scrubbed by ScrollTrigger, which needs unmediated scroll values. */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Scaled on the ROOT, not on body. `rem` resolves against <html>, so setting
+   this on body left every rem-based size — the eyebrow at 0.72rem, control
+   padding, `measure` — frozen at 16px while body text grew around them. */
+@media (min-width: 1500px) {
+  html { font-size: 106.25%; }
+}
+
+@media (min-width: 1800px) {
+  html { font-size: 112.5%; }
+}
+
+/* Shared control sizing so buttons track the type scale instead of being
+   pinned at one padding value across every breakpoint. */
+.btn {
+  display: inline-block;
+  border-radius: 9999px;
+  font-weight: 500;
+  padding-inline: clamp(1.75rem, 2vw, 2.5rem);
+  padding-block: clamp(0.875rem, 1.05vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.02vw, 1.15rem);
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s,
+    transform 0.3s;
+}
+
+/* Arabic sits optically smaller than Latin at the same size and needs more
+   vertical room. Never uppercase, never letter-spaced: positive tracking
+   physically disconnects the joined script. */
+html[lang="ar"] body {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  letter-spacing: 0;
+  font-feature-settings: "lnum" 1; /* Western digits — Levant commercial norm */
+}
+
+html[lang="ar"] .eyebrow {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-sans);
+}
+
+/* Arabic headings need more room than Latin at the same size (ascenders and
+   deep descenders), but far less than body leading — at display sizes the
+   baseline rhythm dominates and anything near 1.25 reads slack. These sit
+   just above the Latin values rather than at body leading.
+
+   Tracking is reset to normal here too: the Latin display styles below carry
+   negative letter-spacing, which on a connected script pulls glyphs into
+   each other. The body rule alone loses to their class specificity. */
+html[lang="ar"] :is(.display, .h1) {
+  line-height: 1.14;
+  letter-spacing: normal;
+}
+
+/* Arabic descends much deeper than Latin, so the reveal mask needs more
+   room underneath or glyph tails get sliced off. The negative margin keeps
+   the visual baseline unchanged. */
+html[lang="ar"] [data-word-mask] {
+  padding-block-end: 0.5em;
+  margin-block-end: -0.5em;
+}
+
+html[lang="ar"] :is(.h2, .h3) {
+  line-height: 1.3;
+  letter-spacing: normal;
+}
+
+/* The header is fixed, so in-page anchors would otherwise land with their
+   heading tucked underneath it. */
+:target,
+section[id] {
+  scroll-margin-block-start: 6.5rem;
+}
+
+::selection {
+  background: var(--color-aqua);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-aqua);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Type helpers
+--------------------------------------------------------------------------- */
+
+.display {
+  font-size: var(--text-display);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.h1 {
+  font-size: var(--text-h1);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.h2 {
+  font-size: var(--text-h2);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.h3 {
+  font-size: var(--text-h3);
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+  font-weight: 600;
+}
+
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* Compact technical label. Used sparingly, per the brief. Latin only —
+   the Arabic override above strips the casing and tracking. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+
+.measure {
+  max-inline-size: 62ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Grain. Applied in CSS rather than baked into the media, so the video
+   encoder never has to spend bitrate on noise.
+--------------------------------------------------------------------------- */
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   Motion, tiered rather than removed.
+
+   Tier 1 (removed): parallax, large translations, scroll-driven scrubbing.
+   Tier 2 (softened): reveals become short opacity fades.
+   Tier 3 (kept): focus rings, colour transitions, loading affordances.
+--------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .parallax,
+  .reveal-shift {
+    transform: none !important;
+  }
+}
+
+/* Elements animated in by GSAP start hidden, but only when JS can run and
+   motion is allowed — otherwise content would be invisible for good. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Arabic legibility and fallback hardening
+--------------------------------------------------------------------------- */
+
+/* Native form controls do not consistently inherit the page font. Without
+   this rule, Arabic labels and typed values can fall back to a mismatched
+   browser font even though the surrounding page uses the bundled typeface. */
+button,
+input,
+textarea,
+select,
+option {
+  font: inherit;
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-arabic), var(--font-plex-latin), system-ui, sans-serif;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+/* Noto Sans Arabic has a generous x-height and reads best with slightly less
+   scaling than the previous Arabic face, while still remaining optically
+   equal to the Latin site. */
+html[lang="ar"] {
+  --text-display: clamp(2.45rem, min(5.9vw, 10.5vh), 6.35rem);
+  --text-h1: clamp(2rem, min(3.9vw, 7vh), 3.8rem);
+  --text-h2: clamp(1.65rem, min(2.7vw, 4.8vh), 2.65rem);
+  --text-h3: clamp(1.18rem, min(1.8vw, 3.1vh), 1.65rem);
+  --text-lead: clamp(1.14rem, min(1.6vw, 2.8vh), 1.46rem);
+}
+
+html[lang="ar"] :is(h1, h2, h3, h4, h5, h6, p, li, a, button, label, input, textarea, select) {
+  letter-spacing: 0 !important;
+}
+
+html[lang="ar"] :is(.display, .h1) {
+  line-height: 1.24;
+}
+
+html[lang="ar"] :is(.h2, .h3) {
+  line-height: 1.42;
+}
+
+html[lang="ar"] .lead {
+  line-height: 1.85;
+}
+
+html[lang="ar"] .eyebrow {
+  line-height: 1.7;
+  opacity: 0.82;
+}
+
+html[lang="ar"] .btn {
+  line-height: 1.5;
+  padding-block: clamp(0.9rem, 1.1vw, 1.2rem);
+}
+
+/* `ch` is based on the width of the Latin zero and creates excessively narrow
+   Arabic heading columns. Arabic animated headings receive a script marker,
+   allowing natural line lengths without changing the English composition. */
+html[lang="ar"] [data-script="arabic"] {
+  max-inline-size: min(100%, 15em) !important;
+  overflow: visible;
+}
+
+html[lang="ar"] [data-word-mask],
+html[lang="ar"] [data-word-inner] {
+  overflow: visible !important;
+  padding-block: 0 !important;
+  margin-block: 0 !important;
+  transform: none;
+  opacity: 1;
+}
+
+html[lang="ar"] .measure {
+  max-inline-size: 46rem;
+}
+
+/* Keep Arabic UI text comfortably above the minimum contrast used for small
+   Latin metadata. */
+html[lang="ar"] :is(.text-paper\/50, .text-paper\/58, .text-paper\/60, .text-paper\/68) {
+  color: color-mix(in srgb, var(--color-paper) 82%, transparent) !important;
+}
+
+html[lang="ar"] :is(.text-ink\/48, .text-ink\/55, .text-ink\/60) {
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent) !important;
+}
+
+/* Prevent long Arabic navigation labels from being compressed or clipped. */
+html[lang="ar"] nav a,
+html[lang="ar"] header a,
+html[lang="ar"] header button {
+  line-height: 1.55;
+}
