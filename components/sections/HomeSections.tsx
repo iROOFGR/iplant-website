@@ -243,6 +243,40 @@ export function ConsultationSection({ locale, content }: Props) {
   );
 }
 
+/* -------------------------------------------------------------- AgriSim */
+
+export function AgriSimInvite({ locale, content }: Props) {
+  const agrisim = content.agrisim;
+  return (
+    <Section tone="ink" id="agrisim" labelledBy="agrisim-heading">
+      <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+        <div>
+          <Eyebrow className="text-aqua">{agrisim.eyebrow}</Eyebrow>
+          <AnimatedText
+            as="h2"
+            id="agrisim-heading"
+            text={agrisim.headline}
+            className="display mt-4 block max-w-[13ch] text-paper"
+          />
+        </div>
+        <Reveal className="border-s border-aqua/40 ps-6">
+          <p className="lead max-w-[52ch] text-paper/75">{agrisim.description}</p>
+          <div className="mt-8">
+            <Cta
+              href={agrisim.cta.href}
+              label={agrisim.cta.label}
+              locale={locale}
+              external
+              variant="aqua"
+            />
+          </div>
+          <p className="mt-5 max-w-[54ch] text-sm text-paper/55">{agrisim.note}</p>
+        </Reveal>
+      </div>
+    </Section>
+  );
+}
+
 /* --------------------------------------------------------- Virtual Farm */
 
 export function VirtualFarmInvite({ locale, content }: Props) {
