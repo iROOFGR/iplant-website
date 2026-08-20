@@ -40,6 +40,11 @@
       "external": true
     },
     {
+      "label": "AgriSim",
+      "href": "AGRISIM_URL",
+      "external": true
+    },
+    {
       "label": "Projects",
       "href": "/projects"
     },
@@ -316,6 +321,16 @@
       "label": "Start a project",
       "href": "/contact?type=project"
     }
+  },
+  "agrisim": {
+    "eyebrow": "AgriSim · Free Early Access",
+    "headline": "Plan your farm before you build it.",
+    "description": "Explore urban, indoor and controlled-environment farming projects — from real-site layouts to system capacity, water, energy and business-case estimates, with Plan and 3D views.",
+    "cta": {
+      "label": "Try AgriSim free",
+      "href": "AGRISIM_URL"
+    },
+    "note": "No credit card. Early Access users will be notified before paid plans are introduced."
   },
   "virtualFarm": {
     "eyebrow": "Virtual Farm",
