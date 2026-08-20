@@ -26,6 +26,7 @@ export const site = {
     process.env.NEXT_PUBLIC_CONTROLLER_PORTAL_URL ??
     "",
   iroofUrl: process.env.NEXT_PUBLIC_IROOF_URL ?? "https://www.iroofgr.com",
+  agrisimUrl: process.env.NEXT_PUBLIC_AGRISIM_URL ?? "https://agrisim.iplantjo.com",
   siteUrl: baseUrl.replace(/\/$/, ""),
   whatsappUrl: `https://wa.me/${phoneE164.replace(/\D/g, "")}`,
   contactEmail: process.env.CONTACT_EMAIL ?? "info@iplantjo.com",
