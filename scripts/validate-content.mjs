@@ -23,7 +23,7 @@ const routeSet = new Set([
   "/contact",
   "/privacy",
 ]);
-const linkTokens = new Set(["IROOF_URL", "WHATSAPP_URL", "MAILTO_URL", "CONTROLLER_URL"]);
+const linkTokens = new Set(["IROOF_URL", "AGRISIM_URL", "WHATSAPP_URL", "MAILTO_URL", "CONTROLLER_URL"]);
 const forbiddenDraftTerms = /(?:REPLACE_WITH|\bTODO\b|\bFIXME\b|lorem ipsum)/i;
 
 function compareShape(a, b, trail = "content") {
