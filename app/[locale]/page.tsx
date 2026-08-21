@@ -7,6 +7,7 @@ import { SystemsGrid } from "@/components/sections/SystemsGrid";
 import { ProjectsShowcase } from "@/components/sections/ProjectsShowcase";
 import { FieldMosaic } from "@/components/sections/FieldMosaic";
 import {
+  AgriSimInvite,
   ConsultationSection,
   FaasSection,
   FinalCta,
@@ -54,6 +55,7 @@ export default async function HomePage({
       <ProjectsShowcase content={content} locale={typedLocale} variant="compact" limit={3} />
       <FieldMosaic content={content} locale={typedLocale} />
       <ConsultationSection locale={typedLocale} content={content} />
+      <AgriSimInvite locale={typedLocale} content={content} />
       <VirtualFarmInvite locale={typedLocale} content={content} />
       <FinalCta locale={typedLocale} content={content} />
     </>

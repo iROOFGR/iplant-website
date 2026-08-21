@@ -12,6 +12,7 @@ const dictionaries = { en, ar } as const;
  */
 const TOKENS: Record<string, string> = {
   IROOF_URL: site.iroofUrl,
+  AGRISIM_URL: site.agrisimUrl,
   WHATSAPP_URL: site.whatsappUrl,
   MAILTO_URL: `mailto:${site.email}`,
   CONTROLLER_URL: site.controllerUrl,

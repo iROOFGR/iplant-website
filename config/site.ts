@@ -26,6 +26,11 @@ export const site = {
     process.env.NEXT_PUBLIC_CONTROLLER_PORTAL_URL ??
     "",
   iroofUrl: process.env.NEXT_PUBLIC_IROOF_URL ?? "https://www.iroofgr.com",
+  // Keep the public launch link on the verified Netlify production origin until
+  // the branded subdomain is attached and healthy. Production can switch to
+  // agrisim.iplantjo.com later through NEXT_PUBLIC_AGRISIM_URL without a code change.
+  agrisimUrl:
+    process.env.NEXT_PUBLIC_AGRISIM_URL ?? "https://iplant-agrisim.netlify.app",
   siteUrl: baseUrl.replace(/\/$/, ""),
   whatsappUrl: `https://wa.me/${phoneE164.replace(/\D/g, "")}`,
   contactEmail: process.env.CONTACT_EMAIL ?? "info@iplantjo.com",
