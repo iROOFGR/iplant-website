@@ -35,6 +35,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: { card: "summary_large_image", images: ["/brand/iplant-social-preview.jpg"] },
     icons: { icon: "/brand/icon-512.png", apple: "/brand/apple-touch-icon.png" },
+    verification: {
+      ...(site.googleSiteVerification ? { google: site.googleSiteVerification } : {}),
+      ...(site.bingSiteVerification ? { other: { "msvalidate.01": site.bingSiteVerification } } : {}),
+    },
   };
 }
 

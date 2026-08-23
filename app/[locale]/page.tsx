@@ -25,28 +25,42 @@ export default async function HomePage({
   const typedLocale: Locale = locale;
   const content = getContent(typedLocale);
 
-  const organizationSchema = {
+  const seoGraph = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: `${site.siteUrl}/${typedLocale}`,
-    logo: `${site.siteUrl}/brand/iplant-wordmark-dark.png`,
-    description: content.site.tagline,
-    email: site.email,
-    telephone: site.phoneE164,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Amman",
-      addressCountry: "JO",
-    },
-    sameAs: [site.social.linkedin, site.social.instagram].filter(Boolean),
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.siteUrl}/#organization`,
+        name: site.name,
+        url: site.siteUrl,
+        logo: `${site.siteUrl}/brand/iplant-wordmark-dark.png`,
+        description: content.site.tagline,
+        email: site.email,
+        telephone: site.phoneE164,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Amman",
+          addressCountry: "JO",
+        },
+        areaServed: ["Jordan", "Middle East", "North Africa"],
+        sameAs: [site.social.linkedin, site.social.instagram].filter(Boolean),
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.siteUrl}/#website`,
+        name: site.name,
+        url: site.siteUrl,
+        inLanguage: ["en", "ar"],
+        publisher: { "@id": `${site.siteUrl}/#organization` },
+      },
+    ],
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(seoGraph) }}
       />
       <CinematicHero locale={typedLocale} content={content} />
       <SystemsGrid locale={typedLocale} content={content} />

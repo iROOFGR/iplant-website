@@ -204,12 +204,7 @@ export function ContactForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={t.fields.name} name="name" required autoComplete="name" />
-        <Field
-          label={type === "hug" ? t.fields.organizationOptional : t.fields.organization}
-          name="organization"
-          required={type === "project"}
-          autoComplete="organization"
-        />
+        <Field label={t.fields.organizationOptional} name="organization" autoComplete="organization" />
         <Field
           label={type === "hug" ? t.fields.city : t.fields.cityCountry}
           name="city"
@@ -235,7 +230,7 @@ export function ContactForm({
         )}
 
         <Field label={t.fields.email} name="email" type="email" required autoComplete="email" />
-        <Field label={t.fields.phone} name="phone" type="tel" required autoComplete="tel" />
+        <Field label={t.fields.phoneOptional} name="phone" type="tel" autoComplete="tel" />
 
         {type === "project" && <Field label={t.fields.timeline} name="timeline" />}
       </div>

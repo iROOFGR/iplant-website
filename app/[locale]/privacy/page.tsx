@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const page = getContent(typedLocale).pages.privacy;
-  return localizedMetadata({ locale: typedLocale, path: "/privacy", title: page.title, description: page.intro, image: "/media/supporting/leaf-detail.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/privacy", title: page.seoTitle, description: page.seoDescription, image: "/media/supporting/leaf-detail.webp" });
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {

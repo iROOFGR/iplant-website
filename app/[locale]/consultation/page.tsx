@@ -15,7 +15,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const page = getContent(typedLocale).pages.consultation;
-  return localizedMetadata({ locale: typedLocale, path: "/consultation", title: page.title, description: page.intro, image: "/media/consultation/consultation-02.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/consultation", title: page.seoTitle, description: page.seoDescription, image: "/media/consultation/consultation-02.webp" });
 }
 
 export default async function ConsultationPage({

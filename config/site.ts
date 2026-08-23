@@ -25,12 +25,11 @@ export const site = {
     process.env.NEXT_PUBLIC_CONTROLLER_URL ??
     process.env.NEXT_PUBLIC_CONTROLLER_PORTAL_URL ??
     "",
-  iroofUrl: process.env.NEXT_PUBLIC_IROOF_URL ?? "https://www.iroofgr.com",
-  // Keep the public launch link on the verified Netlify production origin until
-  // the branded subdomain is attached and healthy. Production can switch to
-  // agrisim.iplantjo.com later through NEXT_PUBLIC_AGRISIM_URL without a code change.
+  iroofUrl: process.env.NEXT_PUBLIC_IROOF_URL ?? "https://iroof.jo",
+  // These defaults are the intended branded production destinations. Preview
+  // deployments can override either value without changing indexed links.
   agrisimUrl:
-    process.env.NEXT_PUBLIC_AGRISIM_URL ?? "https://iplant-agrisim.netlify.app",
+    process.env.NEXT_PUBLIC_AGRISIM_URL ?? "https://agrisim.iplantjo.com",
   siteUrl: baseUrl.replace(/\/$/, ""),
   whatsappUrl: `https://wa.me/${phoneE164.replace(/\D/g, "")}`,
   contactEmail: process.env.CONTACT_EMAIL ?? "info@iplantjo.com",
@@ -38,6 +37,8 @@ export const site = {
     process.env.RESEND_FROM_EMAIL ??
     `iPlant website <website@${new URL(baseUrl).hostname.replace(/^www\./, "")}>`,
   analyticsId: process.env.NEXT_PUBLIC_ANALYTICS_ID ?? "",
+  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  bingSiteVerification: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ?? "",
   social: {
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "",
     instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? "",

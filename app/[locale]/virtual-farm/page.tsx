@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const content = getContent(typedLocale);
-  return localizedMetadata({ locale: typedLocale, path: "/virtual-farm", title: content.planner.headline, description: content.planner.intro, image: "/media/systems/productive-rooftop-farming.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/virtual-farm", title: content.pages.virtualFarm.seoTitle, description: content.pages.virtualFarm.seoDescription, image: "/media/systems/productive-rooftop-farming.webp" });
 }
 
 export default async function VirtualFarmPage({

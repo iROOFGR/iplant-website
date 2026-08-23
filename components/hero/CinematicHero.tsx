@@ -69,9 +69,12 @@ export function CinematicHero({
   const [mode, setMode] = useState<"scrub" | "play" | "static" | null>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion() || prefersReducedData()) setMode("static");
-    else if (isMobileLike()) setMode("play");
-    else setMode("scrub");
+    const frame = window.requestAnimationFrame(() => {
+      if (prefersReducedMotion() || prefersReducedData()) setMode("static");
+      else if (isMobileLike()) setMode("play");
+      else setMode("scrub");
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useLayoutEffect(() => {

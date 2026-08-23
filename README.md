@@ -29,7 +29,7 @@ Open:
 - English: `http://localhost:5218/en`
 - Arabic: `http://localhost:5218/ar`
 
-Node.js 20 or newer is recommended.
+Node.js 20.9 or newer is required.
 
 ## Final homepage sequence
 
@@ -75,7 +75,9 @@ RESEND_API_KEY=...
 RESEND_FROM_EMAIL=iPlant website <website@your-domain.com>
 ```
 
-The official iRoof URL is already configured as `https://www.iroofgr.com`.
+The official iRoof URL is configured as `https://iroof.jo`. AgriSim is configured
+for `https://agrisim.iplantjo.com`; do not expose that link publicly until its
+custom-domain, TLS and signup checks pass.
 
 When the controller URL is empty, controller buttons safely route to a controller-access enquiry instead of opening a broken link.
 

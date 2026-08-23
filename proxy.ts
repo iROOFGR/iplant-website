@@ -5,7 +5,7 @@ import { DEFAULT_LOCALE, LOCALES } from "@/config/site";
  * Every page lives under /en or /ar. Bare paths are negotiated from the
  * Accept-Language header and redirected once.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const hasLocale = LOCALES.some(
@@ -24,5 +24,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|media|brand|favicon.ico|robots.txt|sitemap.xml).*)"],
+  // API routes must never receive a locale redirect: doing so turns a valid
+  // contact-form POST into a GET request for a non-existent localized route.
+  matcher: ["/((?!api|_next|media|brand|favicon.ico|robots.txt|sitemap.xml|manifest.webmanifest).*)"],
 };

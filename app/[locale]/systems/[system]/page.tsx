@@ -38,8 +38,8 @@ export async function generateMetadata({
   return localizedMetadata({
     locale: typedLocale,
     path: `/systems/${system}`,
-    title: page.title,
-    description: page.intro,
+    title: page.seoTitle,
+    description: page.seoDescription,
     image: page.image,
   });
 }
@@ -55,19 +55,32 @@ export default async function SystemPage({
   const content = getContent(typedLocale);
   const page = content.pages[SYSTEMS[system]];
 
-  const serviceSchema = {
+  const seoGraph = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: page.title,
-    description: page.intro,
-    provider: { "@type": "Organization", name: site.name, url: site.siteUrl },
-    areaServed: { "@type": "Country", name: "Jordan" },
-    url: `${site.siteUrl}/${typedLocale}/systems/${system}`,
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${site.siteUrl}/${typedLocale}/systems/${system}#service`,
+        name: page.title,
+        description: page.intro,
+        provider: { "@type": "Organization", "@id": `${site.siteUrl}/#organization`, name: site.name, url: site.siteUrl },
+        areaServed: { "@type": "Country", name: "Jordan" },
+        url: `${site.siteUrl}/${typedLocale}/systems/${system}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: site.name, item: `${site.siteUrl}/${typedLocale}` },
+          { "@type": "ListItem", position: 2, name: content.pages.systems.title, item: `${site.siteUrl}/${typedLocale}/systems` },
+          { "@type": "ListItem", position: 3, name: page.title, item: `${site.siteUrl}/${typedLocale}/systems/${system}` },
+        ],
+      },
+    ],
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(seoGraph) }} />
       <PageHero
         backHref={`/${typedLocale}/systems`}
         backLabel={content.systems.backLabel}
