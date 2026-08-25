@@ -1,10 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { DEFAULT_LOCALE, LOCALES } from "@/config/site";
 
-/**
- * Every page lives under /en or /ar. Bare paths are negotiated from the
- * Accept-Language header and redirected once.
- */
+/** Every page lives under /en or /ar; bare public paths resolve to /en. */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -20,7 +17,9 @@ export function proxy(request: NextRequest) {
   // version of the site they did not ask for.
   const url = request.nextUrl.clone();
   url.pathname = `/${DEFAULT_LOCALE}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(url);
+  // Locale URLs are the permanent public architecture. A 308 preserves the
+  // request method while consolidating indexing and links on /en or /ar.
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {
