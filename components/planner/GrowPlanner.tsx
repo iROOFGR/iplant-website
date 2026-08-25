@@ -64,31 +64,25 @@ export function GrowPlanner({ locale, content }: { locale: Locale; content: Cont
     ? environment
     : (allowedEnvironments[0] as EnvironmentId);
 
-  const availableCrops = useMemo(() => cropsForEnvironment(env), [env]);
+  const availableCrops = cropsForEnvironment(env);
 
   // Memoised because it is a useMemo dependency below — rebuilding the array
   // each render would recompute the whole plan on every keystroke.
-  const effectiveCrops = useMemo<CropId[]>(() => {
-    const active = crops.filter((c) => availableCrops.some((a) => a.id === c));
-    return active.length ? active : [availableCrops[0]!.id];
-  }, [crops, availableCrops]);
+  const activeCrops = crops.filter((crop) => availableCrops.some((available) => available.id === crop));
+  const effectiveCrops: CropId[] = activeCrops.length ? activeCrops : [availableCrops[0]!.id];
 
-  const result: PlanResult = useMemo(
-    () =>
-      computePlan({
-        areaM2,
-        environment: env,
-        setting,
-        crops: effectiveCrops,
-        units: units ?? undefined,
-      }),
-    [areaM2, env, setting, effectiveCrops, units],
-  );
+  const result: PlanResult = computePlan({
+    areaM2,
+    environment: env,
+    setting,
+    crops: effectiveCrops,
+    units: units ?? undefined,
+  });
 
   const { fit, totals, water, energy } = result;
 
   /** Carry the plan into the enquiry so the first reply can be specific. */
-  const enquiryHref = useMemo(() => {
+  const enquiryHref = (() => {
     const summary = [
       `${areaM2} m² ${t.environments[env]}`,
       `${fit.units} × ${fit.system === "hug" ? "HUG" : t.environments.rooftop}`,
@@ -100,7 +94,7 @@ export function GrowPlanner({ locale, content }: { locale: Locale; content: Cont
       plan: summary,
     });
     return `/${locale}/contact?${params.toString()}`;
-  }, [areaM2, env, fit, effectiveCrops, totals, t, locale]);
+  })();
 
   const upliftEnquiryHref = useMemo(() => {
     const summary = [

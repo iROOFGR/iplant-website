@@ -16,7 +16,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const page = getContent(typedLocale).pages.systems;
-  return localizedMetadata({ locale: typedLocale, path: "/systems", title: page.title, description: page.intro, image: "/media/systems/hug-canopy.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/systems", title: page.seoTitle, description: page.seoDescription, image: "/media/systems/hug-canopy.webp" });
 }
 
 export default async function SystemsPage({

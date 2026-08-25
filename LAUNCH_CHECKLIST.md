@@ -8,6 +8,7 @@
 - [ ] Add `RESEND_API_KEY` and an approved `RESEND_FROM_EMAIL`.
 - [ ] Add verified LinkedIn and Instagram URLs, or leave them empty.
 - [ ] Confirm analytics requirements and consent approach before adding analytics.
+- [ ] Add Google Search Console and Bing verification values.
 
 ## Content approval
 
@@ -30,7 +31,8 @@
 - [ ] GREENSPIN hover/focus video does not auto-download on page load.
 - [ ] HUG, GREENSPIN, rooftop and automation detail pages open correctly.
 - [ ] Controller buttons open the real platform after its URL is configured.
-- [ ] iRoof opens `https://www.iroofgr.com` in a new tab.
+- [ ] iRoof opens `https://iroof.jo` in a new tab.
+- [ ] AgriSim opens `https://agrisim.iplantjo.com` only after its custom-domain and signup checks pass.
 - [ ] Contact form sends through Resend when configured.
 - [ ] Contact fallback clearly offers email/WhatsApp when delivery is unavailable.
 - [ ] Sitemap, robots and privacy pages are accessible.

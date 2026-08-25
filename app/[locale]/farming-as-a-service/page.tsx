@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const page = getContent(typedLocale).pages.faas;
-  return localizedMetadata({ locale: typedLocale, path: "/farming-as-a-service", title: page.title, description: page.intro, image: "/media/systems/hug-installed.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/farming-as-a-service", title: page.seoTitle, description: page.seoDescription, image: "/media/systems/hug-installed.webp" });
 }
 
 export default async function FaasPage({

@@ -21,8 +21,6 @@ export function SiteHeader({ locale, content }: { locale: Locale; content: Conte
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setMenuOpen(false), [pathname]);
-
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     if (menuOpen) {
@@ -144,6 +142,7 @@ export function SiteHeader({ locale, content }: { locale: Locale; content: Conte
                 <Link
                   key={item.label}
                   href={href}
+                  onClick={() => setMenuOpen(false)}
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   aria-current={isActive(item.href) ? "page" : undefined}

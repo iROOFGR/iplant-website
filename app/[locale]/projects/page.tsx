@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const page = getContent(typedLocale).pages.projects;
-  return localizedMetadata({ locale: typedLocale, path: "/projects", title: page.title, description: page.intro, image: "/media/projects/project-rss.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/projects", title: page.seoTitle, description: page.seoDescription, image: "/media/projects/project-rss.webp" });
 }
 
 export default async function ProjectsPage({

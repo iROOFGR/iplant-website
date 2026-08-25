@@ -3,7 +3,7 @@ import { z } from "zod";
 const base = {
   name: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(200),
-  phone: z.string().trim().min(6).max(40),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
   message: z.string().trim().max(4000).optional().or(z.literal("")),
   /** Hidden field. Real users never fill it; bots usually do. */
   website: z.string().max(0).optional(),
@@ -21,7 +21,7 @@ export const hugEnquirySchema = z.object({
 export const projectEnquirySchema = z.object({
   type: z.literal("project"),
   ...base,
-  organization: z.string().trim().min(2).max(160),
+  organization: z.string().trim().max(160).optional().or(z.literal("")),
   city: z.string().trim().min(2).max(160),
   projectType: z.string().trim().min(2).max(80),
   space: z.string().trim().max(80).optional().or(z.literal("")),

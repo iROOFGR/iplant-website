@@ -423,11 +423,15 @@
   "pages": {
     "systems": {
       "title": "Systems",
+      "seoTitle": "Urban Farming Systems for Jordan & MENA",
+      "seoDescription": "Explore iPlant vertical, indoor, rooftop and automated farming systems designed for hot, water-limited conditions in Jordan and MENA.",
       "headline": "Growing systems for space, climate and resources.",
       "intro": "iPlant designs and builds controlled growing systems that suit the environment they are deployed in — from compact indoor units to rooftop production and the control layer that runs them."
     },
     "hug": {
       "title": "HUG",
+      "seoTitle": "HUG Indoor Vertical Farming System",
+      "seoDescription": "Grow herbs and leafy greens where they are used with HUG, iPlant's compact automated indoor farming system for hospitality, schools and workplaces.",
       "headline": "Controlled growing, at room scale.",
       "intro": "HUG is a compact indoor growing system designed for hospitality, workplace, education and residential settings. It manages irrigation, lighting and climate automatically, so fresh herbs and leafy greens can be grown where they are used.",
       "image": "/media/systems/hug-installed.webp",
@@ -453,6 +457,8 @@
     },
     "greenspin": {
       "title": "GREENSPIN",
+      "seoTitle": "GREENSPIN Daylight Vertical Farming System",
+      "seoDescription": "Discover GREENSPIN, a rotating vertical farming system that uses natural daylight and recirculates water for compact sites in Jordan and MENA.",
       "headline": "Vertical growing that follows the sun.",
       "intro": "GREENSPIN combines vertical farming with the MENA region’s abundant daylight. A rotating carousel moves trays through the growing cycle while water and nutrients recirculate, increasing productive area without relying on rows of artificial grow lights.",
       "image": "/media/systems/greenspin.webp",
@@ -479,6 +485,8 @@
     },
     "rooftop": {
       "title": "Productive Rooftop Farming",
+      "seoTitle": "Rooftop Farming Systems for Food Production",
+      "seoDescription": "Turn suitable rooftops into productive urban farms with crop, irrigation and control systems designed for hot, dry cities in Jordan and MENA.",
       "headline": "Unused roof area, turned productive.",
       "intro": "Productive Rooftop Farming brings food production to roof space that is otherwise doing nothing. Systems are specified for hot, dry conditions, with irrigation designed around real rooftop exposure rather than ideal growing conditions.",
       "image": "/media/systems/productive-rooftop-farming.webp",
@@ -504,6 +512,8 @@
     },
     "automation": {
       "title": "Smart Controllers, Automation & AI",
+      "seoTitle": "Smart Farm Controllers & Automation Systems",
+      "seoDescription": "Monitor and automate irrigation, lighting, climate and nutrient delivery with iPlant smart farm controllers built for connected growing systems.",
       "headline": "One control layer across every system.",
       "intro": "iPlant's controllers monitor and manage irrigation, lighting, climate and nutrient delivery. Conditions are measured continuously and held against target ranges, with remote visibility of how each system is running.",
       "image": "/media/systems/automation-dashboard.webp",
@@ -533,6 +543,8 @@
     },
     "faas": {
       "title": "Farming as a Service",
+      "seoTitle": "Managed Urban Farming as a Service in Jordan",
+      "seoDescription": "iPlant installs, monitors, supplies and maintains compact growing systems for restaurants, hotels, schools, workplaces and other organisations.",
       "headline": "Fresh growing, fully managed.",
       "intro": "Farming as a Service removes the operational burden of running a growing system. iPlant installs the unit, monitors it remotely, supplies nutrients and seedlings, maintains the hardware and harvests on a schedule.",
       "image": "/media/systems/hug-installed.webp",
@@ -558,21 +570,29 @@
     },
     "projects": {
       "title": "Projects",
+      "seoTitle": "Urban Farming Projects in Jordan",
+      "seoDescription": "See iPlant controlled-environment, vertical and rooftop farming projects built and tested with partners under real conditions in Jordan.",
       "headline": "Built, tested and deployed.",
       "intro": "iPlant's research and development is demonstrated through deployed systems. Each project below was delivered with partners and is operating in real conditions."
     },
     "consultation": {
       "title": "Consultation & Studies",
+      "seoTitle": "Urban Farming Feasibility & Design Consulting",
+      "seoDescription": "Plan an urban or controlled-environment farming project with iPlant, from feasibility and crop planning through technical design and implementation.",
       "headline": "Develop a solution with iPlant.",
       "intro": "iPlant works with organisations from first feasibility question through to a commissioned, operating system — covering crop planning, water and energy systems, controlled environments, automation and implementation."
     },
     "virtualFarm": {
       "title": "Virtual Farm",
+      "seoTitle": "Urban Farm Planner & System Estimator",
+      "seoDescription": "Estimate system fit, crops, water and energy for a real space, then explore how iPlant growing systems work together in the virtual farm.",
       "headline": "Step inside the farm.",
       "intro": "Select a system to see how water, crops, energy and control work together across it."
     },
     "about": {
       "title": "About",
+      "seoTitle": "About iPlant Urban Farming Solutions",
+      "seoDescription": "Meet the Amman-based team researching, designing, building and operating urban farming systems for Jordan and demanding MENA conditions.",
       "headline": "Designed in Jordan. Built for demanding environments.",
       "intro": "iPlant is an urban farming solutions company based in Amman. We research, design, build and operate growing systems suited to the climate, space and water constraints of the MENA region.",
       "image": "/media/supporting/install-work.webp",
@@ -606,12 +626,16 @@
     },
     "contact": {
       "title": "Contact",
+      "seoTitle": "Discuss an Urban Farming Project with iPlant",
+      "seoDescription": "Tell iPlant about your site, crop goals and constraints to receive a practical next step for an urban, rooftop or controlled-environment farming project.",
       "headline": "Bring your farming challenge to iPlant.",
       "intro": "Tell us about the space, the constraints and what you want to grow. We will come back with a practical next step.",
       "directLabel": "Or reach us directly"
     },
     "privacy": {
       "title": "Privacy",
+      "seoTitle": "Website Enquiry Privacy",
+      "seoDescription": "Learn what information iPlant collects through website enquiries, how it is used and how to request access, correction or deletion.",
       "headline": "How iPlant handles website enquiries.",
       "intro": "The contact forms collect only the information needed to respond to your enquiry. The site does not sell personal information or use it for unrelated marketing.",
       "sections": [
@@ -649,6 +673,7 @@
       "timeline": "Estimated timeline (optional)",
       "email": "Email",
       "phone": "Phone",
+      "phoneOptional": "Phone (optional)",
       "message": "Message"
     },
     "settings": [

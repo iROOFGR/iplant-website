@@ -11,7 +11,7 @@
 - Static inspection confirms the homepage hero contains no progress rail or numerical chapter labels.
 - Static inspection confirms all four product cards use the same aspect ratio, content hierarchy and initial still-image state.
 - Header and footer logos link to the localized home page.
-- iRoof URL is configured as `https://www.iroofgr.com`.
+- iRoof URL is configured as `https://iroof.jo`.
 - Controller links use a safe enquiry fallback when the external domain is unset.
 - Contact API and UI distinguish delivered messages from fallback-only states.
 

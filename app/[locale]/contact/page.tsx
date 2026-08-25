@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const typedLocale: Locale = locale;
   const page = getContent(typedLocale).pages.contact;
-  return localizedMetadata({ locale: typedLocale, path: "/contact", title: page.title, description: page.intro, image: "/media/inside/harvest-close.webp" });
+  return localizedMetadata({ locale: typedLocale, path: "/contact", title: page.seoTitle, description: page.seoDescription, image: "/media/inside/harvest-close.webp" });
 }
 
 export default async function ContactPage({
